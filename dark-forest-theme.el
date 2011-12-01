@@ -101,58 +101,61 @@ The output string is of the form \"#RRRRGGGGBBBB\"."
   (hexrgb-color-values-to-hex
    (mapcar (lambda (x) (floor (* x 65535.0))) (hexrgb-hsv-to-rgb hue saturation value))))
 
-(defun dfb-hsv (base saturation-offset value)
+(defun dfb-clamp (num min-num max-num)
+  (min (max num min-num) max-num))
+
+(defun dfb-hsv (base saturation-offset value-offset)
   "Given the base (HUE . SATURATION), applies saturation-offset
 and value and returns a color hex string."
   (hexrgb-hsv-to-hex (/ (nth 0 base) 360.0)
-                     (/ (+ (nth 1 base) saturation-offset) 100.0)
-                     (/ value 100.0)))
+                     (/ (dfb-clamp (+ (nth 1 base) saturation-offset) 0 100)
+                        100.0)
+                     (/ (dfb-clamp (+ (nth 2 base) value-offset) 0 100)
+                        100.0)))
 
 (let* (;; First are all the dark-forest-base colors. These are Hue/Saturation
       ;; pairs and are mostly based on the default font-lock. Integer in terms
       ;; of 360 degrees for hue / 100 percent for saturation.
-      (dfb-red        '(  0   45))
-      (dfb-orange     '( 17   52))
-      (dfb-yellow     '( 51   45))
-      (dfb-green      '(120   39))
-      (dfb-cyan       '(180  100))  ;; TODO: Make this more faded?
-      (dfb-blue       '(203   92))
-      (dfb-violet     '(280   45))
+      (dfb-red        '(  0   45  90))
+      (dfb-orange     '( 17   52 100))
+      (dfb-yellow     '( 51   45  93))
+      (dfb-green      '(120   39  98))
+      (dfb-cyan       '(180   60  90))
+      (dfb-blue       '(210   46  95))
+      (dfb-violet     '(280   45  90))
 
+      (dark-forest-fg    (dfb-hsv dfb-yellow 0 0))
 
-
-      (dark-forest-fg    ;  (dfb-hsv dfb-yellow 0 95))
-"#E6D67E")           ; 50/50/95
+      (dark-forest-ssl-blue  (dfb-hsv dfb-blue   -25 -5))
 
       ;; The superlight colors have saturation 20 and value of 100.
-      (dark-forest-sl-blue  "#C7DFFF")          ; 214/20/100
-      (dark-forest-sl-orange "#FFDACC")         ; 17/20/100
+      (dark-forest-sl-blue    (dfb-hsv dfb-blue   -15 5))
+      (dark-forest-sl-orange  (dfb-hsv dfb-orange -15 5))
 
       ;; The light set of colors have saturation 40 and value of 100.
-      (dark-forest-l-red    "#FF9999")          ; 0/40/100
-      (dark-forest-l-orange "#FFC499")          ; 17/40/100
-      (dark-forest-l-yellow "#FFF099")          ; 51/40/100
-      (dark-forest-l-green  "#AAFF99")          ; 110/40/100
-      (dark-forest-l-cyan   "#99FFFF")          ; 180/40/100
-      (dark-forest-l-blue   "#99C5FF")          ; 214/40/100
+      (dark-forest-l-red    (dfb-hsv dfb-red    -5 5))
+      (dark-forest-l-orange (dfb-hsv dfb-orange -5 5))
+      (dark-forest-l-yellow (dfb-hsv dfb-yellow -5 5))
+      (dark-forest-l-green  (dfb-hsv dfb-green  -5 5))
+      (dark-forest-l-cyan   (dfb-hsv dfb-cyan   -5 5))
+      (dark-forest-l-blue   (dfb-hsv dfb-blue   -5 5))
 
       ;; "Medium" colors, which have saturation 45 and value of 90.
-      (dark-forest-m-red    "#E67E7E")          ; 0/45/90
-      (dark-forest-m-orange "#E6A97E")          ; 25/45/90
-      (dark-forest-m-yellow "#E6D67E")          ; 51/45/90
-      (dark-forest-m-green  "#8FE67E")          ; 110/45/90
-      (dark-forest-m-cyan   "#7EE6E6")          ; 180/45/90
-      (dark-forest-m-blue   "#7EABE6")          ; 214/45/90
-      (dark-forest-m-violet "#C37EE6")          ; 280/45/90
+      (dark-forest-m-red    (dfb-hsv dfb-red 0 0))
+      (dark-forest-m-orange (dfb-hsv dfb-orange 0 0))
+      (dark-forest-m-yellow (dfb-hsv dfb-yellow 0 0))
+      (dark-forest-m-green  (dfb-hsv dfb-green 0 0))
+      (dark-forest-m-cyan   (dfb-hsv dfb-cyan 0 0))
+      (dark-forest-m-blue   (dfb-hsv dfb-blue 0 0))
+      (dark-forest-m-violet (dfb-hsv dfb-violet 0 0))
 
-
-      ;; "Bold" colors, which have saturation of 50 and value of 100.
-      (dark-forest-b-orange "#FF9F80")          ; 17/50/100
+      ;; Bolder colors.
+      (dark-forest-b-yellow (dfb-hsv dfb-yellow 20 10))
 
       ;; "Dark" colors, which have saturation 55 and value of 80. Mainly used
       ;; for flyspell checking. Significantly darker than any of the above.
-      (dark-forest-d-red    "#CC2929")          ; 0/80/80
-      (dark-forest-d-yellow "#CCB429")          ; 51/80/80
+      (dark-forest-d-red    (dfb-hsv dfb-red 20 -20))
+      (dark-forest-d-yellow (dfb-hsv dfb-yellow 20 -20))
 
       ;; "Black" background colors. All are variants of a theme.
       (dark-forest-bg      "#1a1a1a")           ; 0/0/10
@@ -194,14 +197,14 @@ and value and returns a color hex string."
    ;; ---- After this line only new, validated stuff ----
 
    ;; Compilation
-   `(compilation-info ((t (:foreground ,dark-forest-m-green :weight bold))))
+   `(compilation-info ((t (:foreground ,dark-forest-l-green :weight normal))))
    `(compilation-line-number ((t (:foreground ,dark-forest-sl-blue))))
    `(compilation-column-number ((t (:foreground ,dark-forest-sl-orange))))
    `(compilation-error ((t (:foreground ,dark-forest-m-red))))
    `(compilation-warning ((t (:foreground ,dark-forest-d-yellow))))
 
    ;; Diff mode
-   `(diff-file-header ((t (:foreground ,dark-forest-fg
+   `(diff-file-header ((t (:weight normal :foreground ,dark-forest-b-yellow
                            :background ,dark-forest-bg-2))))
    `(diff-header ((t (:foreground ,dark-forest-fg
                       :background ,dark-forest-bg-2))))
@@ -221,11 +224,11 @@ and value and returns a color hex string."
    `(font-lock-function-name-face ((t (:foreground ,dark-forest-m-blue))))
    `(font-lock-keyword-face ((t (:foreground ,dark-forest-m-cyan))))
    '(font-lock-negation-char-face ((t nil)))
-   `(font-lock-preprocessor-face ((t (:foreground ,dark-forest-l-blue))))
+   `(font-lock-preprocessor-face ((t (:foreground ,dark-forest-ssl-blue))))
    '(font-lock-regexp-grouping-backslash ((t (:weight bold))))
    '(font-lock-regexp-grouping-construct ((t (:weight bold))))
-   `(font-lock-string-face ((t (:foreground ,dark-forest-b-orange))))
-   `(font-lock-type-face ((t (:foreground ,dark-forest-l-green))))
+   `(font-lock-string-face ((t (:foreground ,dark-forest-m-orange))))
+   `(font-lock-type-face ((t (:foreground ,dark-forest-m-green))))
    `(font-lock-variable-name-face ((t (:foreground ,dark-forest-sl-blue))))
    `(font-lock-warning-face ((t (:inherit error :foreground ,dark-forest-l-red
                                           :weight bold))))
