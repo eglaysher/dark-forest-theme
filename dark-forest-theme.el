@@ -197,7 +197,7 @@ and value and returns a color hex string."
    ;; ---- After this line only new, validated stuff ----
 
    ;; Compilation
-   `(compilation-info ((t (:foreground ,dark-forest-l-green :weight normal))))
+   `(compilation-info ((t (:foreground ,dark-forest-m-green :weight normal))))
    `(compilation-line-number ((t (:foreground ,dark-forest-sl-blue))))
    `(compilation-column-number ((t (:foreground ,dark-forest-sl-orange))))
    `(compilation-error ((t (:foreground ,dark-forest-m-red))))
@@ -237,7 +237,7 @@ and value and returns a color hex string."
 
    ;; ido
    `(ido-first-match ((t (:foreground ,dark-forest-m-yellow :weight bold))))
-   `(ido-only-match ((t (:foreground ,dark-forest-m-orange))))
+   `(ido-only-match ((t (:foreground ,dark-forest-m-green))))
    `(ido-subdir ((t (:foreground ,dark-forest-l-blue))))
 
    ;; isearch
