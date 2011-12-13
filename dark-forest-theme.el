@@ -15,8 +15,10 @@ depending on darkness/lightness. Valid saturation values are
 ;; type/green:    120/39/98  (#98fb98)
 ;; keyword/cyan:  180/100/100
 
+
 ;; Stolen from hexrgb.el until I've settled on the colors. Then I'll remove
 ;; these and hard code the constants.
+(eval-when-compile (require 'cl)) ;; case
 (defun hexrgb-hsv-to-rgb (hue saturation value)
   "Convert HUE, SATURATION, VALUE components to RGB (red, green, blue).
 Each input component is 0.0 to 1.0, inclusive.
@@ -105,7 +107,7 @@ The output string is of the form \"#RRRRGGGGBBBB\"."
   (min (max num min-num) max-num))
 
 (defun dfb-hsv (base saturation-offset value-offset)
-  "Given the base (HUE . SATURATION), applies saturation-offset
+  "Given the base (HUE SATURATION VALUE), applies saturation-offset
 and value and returns a color hex string."
   (hexrgb-hsv-to-hex (/ (nth 0 base) 360.0)
                      (/ (dfb-clamp (+ (nth 1 base) saturation-offset) 0 100)
@@ -113,16 +115,16 @@ and value and returns a color hex string."
                      (/ (dfb-clamp (+ (nth 2 base) value-offset) 0 100)
                         100.0)))
 
-(let* (;; First are all the dark-forest-base colors. These are Hue/Saturation
-      ;; pairs and are mostly based on the default font-lock. Integer in terms
-      ;; of 360 degrees for hue / 100 percent for saturation.
-      (dfb-red        '(  0   45  90))
-      (dfb-orange     '( 17   52 100))
-      (dfb-yellow     '( 51   45  93))
-      (dfb-green      '(120   39  98))
-      (dfb-cyan       '(180   60  90))
-      (dfb-blue       '(210   46  95))
-      (dfb-violet     '(280   45  90))
+(let* (;; First are all the base colors. These are hue/saturation/value
+       ;; triples and are mostly based on the default font-lock. Integer in terms
+       ;; of 360 degrees for hue / 100 percent for saturation and value.
+       (dfb-red        '(  0   45  90))
+       (dfb-orange     '( 17   52 100))
+       (dfb-yellow     '( 51   45  93))
+       (dfb-green      '(120   39  98))
+       (dfb-cyan       '(180   60  90))
+       (dfb-blue       '(210   46  95))
+       (dfb-violet     '(280   45  90))
 
       (dark-forest-fg    (dfb-hsv dfb-yellow 0 0))
 
@@ -211,6 +213,12 @@ and value and returns a color hex string."
    `(diff-added ((t (:foreground ,dark-forest-l-green))))
    `(diff-removed ((t (:foreground ,dark-forest-l-red))))
 
+   ;; EMMS
+   `(emms-stream-name ((t (:weight normal :foreground ,dark-forest-b-yellow))))
+   `(emms-stream-url-face ((t (:foreground ,dark-forest-sl-blue))))
+   `(emms-playlist-selected-face ((t (:foreground ,dark-forest-l-blue))))
+   `(emms-playlist-track-face ((t (:foreground ,dark-forest-m-yellow))))
+
    ;; Flyspell colors
    `(flyspell-duplicate ((t (:foreground ,dark-forest-d-yellow :weight bold))))
    `(flyspell-incorrect ((t (:foreground ,dark-forest-d-red :weight bold))))
@@ -249,4 +257,3 @@ and value and returns a color hex string."
 ))
 
 (provide-theme 'dark-forest)
-
