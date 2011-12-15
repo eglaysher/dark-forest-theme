@@ -126,7 +126,11 @@ and value and returns a color hex string."
        (dfb-blue       '(210   46  95))
        (dfb-violet     '(280   45  90))
 
-      (dark-forest-fg    (dfb-hsv dfb-yellow 0 0))
+      (dark-forest-fg        (dfb-hsv dfb-yellow 0 0))
+      (dark-forest-fg-white  (dfb-hsv '( 51 5 93) 0 0))
+
+      (dark-forest-gray   (dfb-hsv '( 51 5 70) 0 0))
+      (dark-forest-dim-gray   (dfb-hsv '( 51 5 45) 0 0)) ;; a bit bright for dim gray?
 
       (dark-forest-ssl-blue  (dfb-hsv dfb-blue   -25 -5))
 
@@ -156,8 +160,13 @@ and value and returns a color hex string."
 
       ;; "Dark" colors, which have saturation 55 and value of 80. Mainly used
       ;; for flyspell checking. Significantly darker than any of the above.
-      (dark-forest-d-red    (dfb-hsv dfb-red 20 -20))
-      (dark-forest-d-yellow (dfb-hsv dfb-yellow 20 -20))
+      (dark-forest-d-red    (dfb-hsv dfb-red 15 -15))
+      (dark-forest-d-orange (dfb-hsv dfb-orange 15 -15))
+      (dark-forest-d-yellow (dfb-hsv dfb-yellow 15 -15))
+      (dark-forest-d-green (dfb-hsv dfb-green 15 -15))
+      (dark-forest-d-cyan (dfb-hsv dfb-cyan 15 -15))
+      (dark-forest-d-blue (dfb-hsv dfb-blue 15 -15))
+      (dark-forest-d-violet (dfb-hsv dfb-violet 15 -15))
 
       ;; "Black" background colors. All are variants of a theme.
       (dark-forest-bg      "#1a1a1a")           ; 0/0/10
@@ -219,16 +228,61 @@ and value and returns a color hex string."
    `(emms-playlist-selected-face ((t (:foreground ,dark-forest-l-blue))))
    `(emms-playlist-track-face ((t (:foreground ,dark-forest-m-yellow))))
 
+   ;; erc
+   `(erc-button ((t (:foreground ,dark-forest-m-cyan :weight normal :underline t))))
+   `(erc-current-nick-face ((t (:foreground ,dark-forest-l-red))))
+   `(erc-input-face ((t (:weight normal :foreground ,dark-forest-fg-white))))
+   `(erc-keyword-face ((t (:foreground ,dark-forest-m-green))))
+   `(erc-nick-default-face ((t (:weight normal :foreground ,dark-forest-sl-blue))))
+   `(erc-notice-face ((t (:weight normal :foreground ,dark-forest-dim-gray))))
+   `(erc-prompt-face ((t (:foreground "black" :background ,dark-forest-m-blue))))
+   `(erc-timestamp-face ((t (:foreground ,dark-forest-m-green))))
+   `(erc-my-nick-face ((t (:foreground ,dark-forest-l-red))))
+
+   ;; TODO: Figure out what to do about teal.
+   `(fg:erc-color-face0 ((t (:foreground ,dark-forest-fg-white))))
+   `(fg:erc-color-face1 ((t (:foreground "black"))))
+   `(fg:erc-color-face2 ((t (:foreground ,dark-forest-d-blue))))
+   `(fg:erc-color-face3 ((t (:foreground ,dark-forest-d-green))))
+   `(fg:erc-color-face4 ((t (:foreground ,dark-forest-d-red))))
+   `(fg:erc-color-face5 ((t (:foreground ,dark-forest-d-yellow))))
+   `(fg:erc-color-face6 ((t (:foreground ,dark-forest-d-violet))))
+   `(fg:erc-color-face7 ((t (:foreground ,dark-forest-d-orange))))
+   `(fg:erc-color-face8 ((t (:foreground ,dark-forest-m-yellow))))
+   `(fg:erc-color-face9 ((t (:foreground ,dark-forest-m-green))))
+   '(fg:erc-color-face10 ((t (:foreground "teal"))))
+   `(fg:erc-color-face11 ((t (:foreground ,dark-forest-m-cyan))))
+   `(fg:erc-color-face12 ((t (:foreground ,dark-forest-m-blue))))
+   `(fg:erc-color-face13 ((t (:foreground ,dark-forest-m-violet))))
+   `(fg:erc-color-face14 ((t (:foreground ,dark-forest-dim-gray))))
+   `(fg:erc-color-face15 ((t (:foreground ,dark-forest-gray))))
+   `(bg:erc-color-face0 ((t (:background ,dark-forest-fg-white))))
+   `(bg:erc-color-face1 ((t (:background "black"))))
+   `(bg:erc-color-face2 ((t (:background ,dark-forest-d-blue))))
+   `(bg:erc-color-face3 ((t (:background ,dark-forest-d-green))))
+   `(bg:erc-color-face4 ((t (:background ,dark-forest-d-red))))
+   `(bg:erc-color-face5 ((t (:background ,dark-forest-d-yellow))))
+   `(bg:erc-color-face6 ((t (:background ,dark-forest-d-violet))))
+   `(bg:erc-color-face7 ((t (:background ,dark-forest-d-orange))))
+   `(bg:erc-color-face8 ((t (:background ,dark-forest-m-yellow))))
+   `(bg:erc-color-face9 ((t (:background ,dark-forest-m-green))))
+   '(bg:erc-color-face10 ((t (:background "teal"))))
+   `(bg:erc-color-face11 ((t (:background ,dark-forest-m-cyan))))
+   `(bg:erc-color-face12 ((t (:background ,dark-forest-m-blue))))
+   `(bg:erc-color-face13 ((t (:background ,dark-forest-m-violet))))
+   `(bg:erc-color-face14 ((t (:background ,dark-forest-dim-gray))))
+   `(bg:erc-color-face15 ((t (:background ,dark-forest-gray))))
+
    ;; Flyspell colors
    `(flyspell-duplicate ((t (:foreground ,dark-forest-d-yellow :weight bold))))
    `(flyspell-incorrect ((t (:foreground ,dark-forest-d-red :weight bold))))
 
    ;; font lock
    `(font-lock-builtin-face ((t (:foreground ,dark-forest-l-blue))))
-   '(font-lock-comment-face ((t (:foreground "dim gray"))))
+   `(font-lock-comment-face ((t (:foreground ,dark-forest-dim-gray))))
    '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
-   '(font-lock-constant-face ((t (:foreground "gray"))))
-   '(font-lock-doc-face ((t (:foreground "dim gray"))))
+   `(font-lock-constant-face ((t (:foreground ,dark-forest-gray))))
+   `(font-lock-doc-face ((t (:foreground ,dark-forest-dim-gray))))
    `(font-lock-function-name-face ((t (:foreground ,dark-forest-m-blue))))
    `(font-lock-keyword-face ((t (:foreground ,dark-forest-m-cyan))))
    '(font-lock-negation-char-face ((t nil)))
