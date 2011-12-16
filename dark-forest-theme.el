@@ -214,6 +214,11 @@ and value and returns a color hex string."
 
    ;; ---- After this line only new, validated stuff ----
 
+   ;; Calendar
+   `(holiday ((t (:foreground ,dark-forest-l-red))))
+   `(calendar-today ((t (:foreground ,dark-forest-l-green))))
+   `(diary ((t (:foreground ,dark-forest-l-blue))))
+
    ;; Comint
    `(comint-highlight-input ((t (:foreground ,dark-forest-fg-white))))
    `(comint-highlight-prompt ((t (:foreground ,dark-forest-l-cyan))))
@@ -343,6 +348,9 @@ and value and returns a color hex string."
    `(lazy-highlight ((t (:background ,dark-forest-bg-blue))))
    '(query-replace ((t (:inherit isearch))))
 
+   ;; makefile
+   `(makefile-space ((t (:background ,dark-forest-m-red))))
+
    ;; modeline
    `(header-line ((t (:inherit mode-line :background ,dark-forest-bg-2
                                :foreground ,dark-forest-fg-white :box nil))))
@@ -352,6 +360,17 @@ and value and returns a color hex string."
    '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
    `(mode-line-inactive ((t (:inherit mode-line :background ,dark-forest-gray-30 :foreground "gray80" :box (:line-width -1 :color "grey40") :weight light))))
 
+   ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
+   `(org-date ((t (:foreground ,dark-forest-l-cyan :underline t))))
+   `(org-special-keyword ((t (:foreground ,dark-forest-l-yellow))))
+   `(org-level-1 ((t (:foreground ,dark-forest-m-blue))))
+   `(org-level-2 ((t (:foreground ,dark-forest-m-cyan))))
+   `(org-level-3 ((t (:foreground ,dark-forest-m-green))))
+   `(org-level-4 ((t (:foreground ,dark-forest-m-yellow))))
+   `(org-level-5 ((t (:foreground ,dark-forest-m-orange))))
+   `(org-level-6 ((t (:foreground ,dark-forest-m-red))))
+   `(org-level-7 ((t (:foreground ,dark-forest-m-violet))))
+   `(org-todo ((t (:foreground ,dark-forest-l-red :weight bold))))
 ))
 
 (provide-theme 'dark-forest)
