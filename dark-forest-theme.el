@@ -115,6 +115,12 @@ and value and returns a color hex string."
                      (/ (dfb-clamp (+ (nth 2 base) value-offset) 0 100)
                         100.0)))
 
+(defun dfb-gray (lum)
+  "Builds our grays that have just the slightest hint of amber in therm."
+  (hexrgb-hsv-to-hex (/ 51.0 360.0)
+                     (/ 5.0 100.0)
+                     (/ lum 100.0)))
+
 (let* (;; First are all the base colors. These are hue/saturation/value
        ;; triples and are mostly based on the default font-lock. Integer in terms
        ;; of 360 degrees for hue / 100 percent for saturation and value.
@@ -129,16 +135,19 @@ and value and returns a color hex string."
       (dark-forest-fg        (dfb-hsv dfb-yellow 0 0))
       (dark-forest-fg-white  (dfb-hsv '( 51 5 93) 0 0))
 
-      (dark-forest-gray   (dfb-hsv '( 51 5 70) 0 0))
-      (dark-forest-dim-gray   (dfb-hsv '( 51 5 45) 0 0)) ;; a bit bright for dim gray?
+      (dark-forest-gray-80    (dfb-gray 80))
+      (dark-forest-gray       (dfb-gray 70))
+      (dark-forest-gray-60    (dfb-gray 60))
+      (dark-forest-dim-gray   (dfb-gray 45))
+      (dark-forest-gray-30    (dfb-gray 30))
 
       (dark-forest-ssl-blue  (dfb-hsv dfb-blue   -25 -5))
 
-      ;; The superlight colors have saturation 20 and value of 100.
+      ;; The superlight colors.
       (dark-forest-sl-blue    (dfb-hsv dfb-blue   -15 5))
       (dark-forest-sl-orange  (dfb-hsv dfb-orange -15 5))
 
-      ;; The light set of colors have saturation 40 and value of 100.
+      ;; The light set of colors.
       (dark-forest-l-red    (dfb-hsv dfb-red    -5 5))
       (dark-forest-l-orange (dfb-hsv dfb-orange -5 5))
       (dark-forest-l-yellow (dfb-hsv dfb-yellow -5 5))
@@ -146,7 +155,7 @@ and value and returns a color hex string."
       (dark-forest-l-cyan   (dfb-hsv dfb-cyan   -5 5))
       (dark-forest-l-blue   (dfb-hsv dfb-blue   -5 5))
 
-      ;; "Medium" colors, which have saturation 45 and value of 90.
+      ;; "Medium" colors.
       (dark-forest-m-red    (dfb-hsv dfb-red 0 0))
       (dark-forest-m-orange (dfb-hsv dfb-orange 0 0))
       (dark-forest-m-yellow (dfb-hsv dfb-yellow 0 0))
@@ -168,7 +177,8 @@ and value and returns a color hex string."
       (dark-forest-d-blue (dfb-hsv dfb-blue 15 -15))
       (dark-forest-d-violet (dfb-hsv dfb-violet 15 -15))
 
-      ;; "Black" background colors. All are variants of a theme.
+      ;; "Black" background colors. Our "gray" has the slightest hint of amber
+      ;; tint, but this is pure black/gray.
       (dark-forest-bg      "#1a1a1a")           ; 0/0/10
       (dark-forest-bg-2    "#333333")           ; 0/0/20
       (dark-forest-bg-3    "#4D4D4D")           ; 0/0/30
@@ -195,17 +205,18 @@ and value and returns a color hex string."
    `(link ((t (:foreground ,dark-forest-m-cyan :underline t))))
    `(link-visited ((t (:inherit link :foreground ,dark-forest-m-violet))))
    '(fringe ((t (:background "grey10"))))
-   '(header-line ((t (:inherit mode-line :background "gray20" :foreground "gray90" :box nil))))
-   '(mode-line ((t (:background "gray50" :foreground "black" :box (:line-width -1 :style released-button)))))
-   '(mode-line-buffer-id ((t (:weight bold))))
-   '(mode-line-emphasis ((t (:weight bold))))
-   '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
-   '(mode-line-inactive ((t (:inherit mode-line :background "grey30" :foreground "grey80" :box (:line-width -1 :color "grey40") :weight light))))
    '(match ((t (:background "RoyalBlue3"))))
    '(next-error ((t (:inherit region))))
-   ;; error and warning.
+
+   `(shadow ((t (:foreground ,dark-forest-gray))))
+   `(error ((t (:inherit error :foreground ,dark-forest-l-red :weight bold))))
+   `(warning ((t (:foreground ,dark-forest-l-orange))))
 
    ;; ---- After this line only new, validated stuff ----
+
+   ;; Comint
+   `(comint-highlight-input ((t (:foreground ,dark-forest-fg-white))))
+   `(comint-highlight-prompt ((t (:foreground ,dark-forest-l-cyan))))
 
    ;; Compilation
    `(compilation-info ((t (:foreground ,dark-forest-m-green :weight normal))))
@@ -213,6 +224,17 @@ and value and returns a color hex string."
    `(compilation-column-number ((t (:foreground ,dark-forest-sl-orange))))
    `(compilation-error ((t (:foreground ,dark-forest-m-red))))
    `(compilation-warning ((t (:foreground ,dark-forest-d-yellow))))
+
+   ;; Custom mode
+   `(custom-invalid ((t (:foregournd ,dark-forest-l-red))))
+   `(custom-group-tag ((t (:foreground ,dark-forest-m-blue))))
+   `(custom-state ((t (:foreground ,dark-forest-m-green))))
+   `(custom-variable-tag ((t (:foreground ,dark-forest-l-blue))))
+   `(custom-comment-tag ((t (:foreground ,dark-forest-gray))))
+   `(custom-button ((t (:background ,dark-forest-gray-80))))
+   `(custom-button-mouse ((t (:background ,dark-forest-fg-white))))
+   ;; TODO(erg): Theoretically there are other faces in this group, but I can't
+   ;; see them ever used. :-/
 
    ;; Diff mode
    `(diff-file-header ((t (:weight normal :foreground ,dark-forest-b-yellow
@@ -231,6 +253,7 @@ and value and returns a color hex string."
    ;; erc
    `(erc-button ((t (:foreground ,dark-forest-m-cyan :weight normal :underline t))))
    `(erc-current-nick-face ((t (:foreground ,dark-forest-l-red))))
+   `(erc-error-face ((t (:foreground ,dark-forest-m-red))))
    `(erc-input-face ((t (:weight normal :foreground ,dark-forest-fg-white))))
    `(erc-keyword-face ((t (:foreground ,dark-forest-m-green))))
    `(erc-nick-default-face ((t (:weight normal :foreground ,dark-forest-sl-blue))))
@@ -295,12 +318,23 @@ and value and returns a color hex string."
    `(font-lock-warning-face ((t (:inherit error :foreground ,dark-forest-l-red
                                           :weight bold))))
 
-   ;; TODO: ibuffer when that gets updated to use defface stuff.
+   ;; help-argument: Just a slight lightening of arguments to make them stand
+   ;; out just a bit, but not a :wight bold bit. Consider making this a sl
+   ;; variant.
+   `(help-argument-name ((t (:foreground ,dark-forest-l-yellow))))
 
    ;; ido
    `(ido-first-match ((t (:foreground ,dark-forest-m-yellow :weight bold))))
    `(ido-only-match ((t (:foreground ,dark-forest-m-green))))
    `(ido-subdir ((t (:foreground ,dark-forest-l-blue))))
+
+   ;; info
+   `(info-title-1 ((t (:foreground ,dark-forest-fg-white))))
+   `(info-title-2 ((t (:foreground ,dark-forest-gray))))
+   `(info-title-3 ((t (:foreground ,dark-forest-dim-gray))))
+   `(info-header-node ((t (:foreground ,dark-forest-fg-white))))
+   `(info-menu-header ((t (:foreground ,dark-forest-gray))))
+   `(info-menu-star ((t (:foreground ,dark-forest-m-red))))
 
    ;; isearch
    `(isearch ((t (:background ,dark-forest-l-red
@@ -308,6 +342,16 @@ and value and returns a color hex string."
    `(isearch-fail ((t (:background ,dark-forest-bg-red))))
    `(lazy-highlight ((t (:background ,dark-forest-bg-blue))))
    '(query-replace ((t (:inherit isearch))))
+
+   ;; modeline
+   `(header-line ((t (:inherit mode-line :background ,dark-forest-bg-2
+                               :foreground ,dark-forest-fg-white :box nil))))
+   `(mode-line ((t (:background ,dark-forest-gray-60 :foreground "black" :box (:line-width -1 :style released-button)))))
+   '(mode-line-buffer-id ((t (:weight bold))))
+   '(mode-line-emphasis ((t (:weight bold))))
+   '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
+   `(mode-line-inactive ((t (:inherit mode-line :background ,dark-forest-gray-30 :foreground "gray80" :box (:line-width -1 :color "grey40") :weight light))))
+
 ))
 
 (provide-theme 'dark-forest)
