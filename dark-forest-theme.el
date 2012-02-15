@@ -118,7 +118,7 @@ and value and returns a color hex string."
 (defun dfb-gray (lum)
   "Builds our grays that have just the slightest hint of amber in therm."
   (hexrgb-hsv-to-hex (/ 51.0 360.0)
-                     (/ 5.0 100.0)
+                     (/ 3.0 100.0)
                      (/ lum 100.0)))
 
 (let* (;; First are all the base colors. These are hue/saturation/value
@@ -133,7 +133,7 @@ and value and returns a color hex string."
        (dfb-violet     '(280   45  90))
 
       (dark-forest-fg        (dfb-hsv dfb-yellow 0 0))
-      (dark-forest-fg-white  (dfb-hsv '( 51 5 93) 0 0))
+      (dark-forest-fg-white  (dfb-gray 93))
 
       (dark-forest-gray-80    (dfb-gray 80))
       (dark-forest-gray       (dfb-gray 70))
