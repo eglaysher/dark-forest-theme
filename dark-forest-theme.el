@@ -132,245 +132,245 @@ and value and returns a color hex string."
        (dfb-blue       '(210   46  95))
        (dfb-violet     '(280   45  90))
 
-      (dark-forest-fg        (dfb-hsv dfb-yellow 0 0))
-      (dark-forest-fg-white  (dfb-gray 93))
+      (df-fg        (dfb-hsv dfb-yellow 0 0))
+      (df-fg-white  (dfb-gray 93))
 
-      (dark-forest-gray-80    (dfb-gray 80))
-      (dark-forest-gray       (dfb-gray 70))
-      (dark-forest-gray-60    (dfb-gray 60))
-      (dark-forest-dim-gray   (dfb-gray 45))
-      (dark-forest-gray-30    (dfb-gray 30))
+      (df-gray-80    (dfb-gray 80))
+      (df-gray       (dfb-gray 70))
+      (df-gray-60    (dfb-gray 60))
+      (df-dim-gray   (dfb-gray 45))
+      (df-gray-30    (dfb-gray 30))
 
-      (dark-forest-ssl-blue  (dfb-hsv dfb-blue   -25 -5))
+      (df-ssl-blue  (dfb-hsv dfb-blue   -25 -5))
 
       ;; The superlight colors.
-      (dark-forest-sl-blue    (dfb-hsv dfb-blue   -15 5))
-      (dark-forest-sl-orange  (dfb-hsv dfb-orange -15 5))
+      (df-sl-blue    (dfb-hsv dfb-blue   -15 5))
+      (df-sl-orange  (dfb-hsv dfb-orange -15 5))
 
       ;; The light set of colors.
-      (dark-forest-l-red    (dfb-hsv dfb-red    -5 5))
-      (dark-forest-l-orange (dfb-hsv dfb-orange -5 5))
-      (dark-forest-l-yellow (dfb-hsv dfb-yellow -5 5))
-      (dark-forest-l-green  (dfb-hsv dfb-green  -5 5))
-      (dark-forest-l-cyan   (dfb-hsv dfb-cyan   -5 5))
-      (dark-forest-l-blue   (dfb-hsv dfb-blue   -5 5))
+      (df-l-red    (dfb-hsv dfb-red    -5 5))
+      (df-l-orange (dfb-hsv dfb-orange -5 5))
+      (df-l-yellow (dfb-hsv dfb-yellow -5 5))
+      (df-l-green  (dfb-hsv dfb-green  -5 5))
+      (df-l-cyan   (dfb-hsv dfb-cyan   -5 5))
+      (df-l-blue   (dfb-hsv dfb-blue   -5 5))
 
       ;; "Medium" colors.
-      (dark-forest-m-red    (dfb-hsv dfb-red 0 0))
-      (dark-forest-m-orange (dfb-hsv dfb-orange 0 0))
-      (dark-forest-m-yellow (dfb-hsv dfb-yellow 0 0))
-      (dark-forest-m-green  (dfb-hsv dfb-green 0 0))
-      (dark-forest-m-cyan   (dfb-hsv dfb-cyan 0 0))
-      (dark-forest-m-blue   (dfb-hsv dfb-blue 0 0))
-      (dark-forest-m-violet (dfb-hsv dfb-violet 0 0))
+      (df-m-red    (dfb-hsv dfb-red 0 0))
+      (df-m-orange (dfb-hsv dfb-orange 0 0))
+      (df-m-yellow (dfb-hsv dfb-yellow 0 0))
+      (df-m-green  (dfb-hsv dfb-green 0 0))
+      (df-m-cyan   (dfb-hsv dfb-cyan 0 0))
+      (df-m-blue   (dfb-hsv dfb-blue 0 0))
+      (df-m-violet (dfb-hsv dfb-violet 0 0))
 
       ;; Bolder colors.
-      (dark-forest-b-yellow (dfb-hsv dfb-yellow 20 10))
+      (df-b-yellow (dfb-hsv dfb-yellow 20 10))
 
       ;; "Dark" colors, which have saturation 55 and value of 80. Mainly used
       ;; for flyspell checking. Significantly darker than any of the above.
-      (dark-forest-d-red    (dfb-hsv dfb-red 15 -15))
-      (dark-forest-d-orange (dfb-hsv dfb-orange 15 -15))
-      (dark-forest-d-yellow (dfb-hsv dfb-yellow 15 -15))
-      (dark-forest-d-green (dfb-hsv dfb-green 15 -15))
-      (dark-forest-d-cyan (dfb-hsv dfb-cyan 15 -15))
-      (dark-forest-d-blue (dfb-hsv dfb-blue 15 -15))
-      (dark-forest-d-violet (dfb-hsv dfb-violet 15 -15))
+      (df-d-red    (dfb-hsv dfb-red 15 -15))
+      (df-d-orange (dfb-hsv dfb-orange 15 -15))
+      (df-d-yellow (dfb-hsv dfb-yellow 15 -15))
+      (df-d-green (dfb-hsv dfb-green 15 -15))
+      (df-d-cyan (dfb-hsv dfb-cyan 15 -15))
+      (df-d-blue (dfb-hsv dfb-blue 15 -15))
+      (df-d-violet (dfb-hsv dfb-violet 15 -15))
 
       ;; "Black" background colors. Our "gray" has the slightest hint of amber
       ;; tint, but this is pure black/gray.
-      (dark-forest-bg      "#1a1a1a")           ; 0/0/10
-      (dark-forest-bg-2    "#333333")           ; 0/0/20
-      (dark-forest-bg-3    "#4D4D4D")           ; 0/0/30
+      (df-bg      "#1a1a1a")           ; 0/0/10
+      (df-bg-2    "#333333")           ; 0/0/20
+      (df-bg-3    "#4D4D4D")           ; 0/0/30
 
-      (dark-forest-bg-red  "#660000")           ; 0/100/40
-      (dark-forest-bg-blue "#3D4F66")           ; 214/40/40
+      (df-bg-red  "#660000")           ; 0/100/40
+      (df-bg-blue "#3D4F66")           ; 214/40/40
 
       )
   (custom-theme-set-faces
    'dark-forest
 
    ;; faces.el
-   `(default ((t (:background ,dark-forest-bg :foreground ,dark-forest-fg
+   `(default ((t (:background ,df-bg :foreground ,df-fg
                               :weight normal :width normal))))
    '(cursor ((t (:background "yellow" :foreground "black"))))
-   `(escape-glyph ((t (:foreground ,dark-forest-l-cyan))))
-   `(minibuffer-prompt ((t (:foreground ,dark-forest-l-cyan))))
+   `(escape-glyph ((t (:foreground ,df-l-cyan))))
+   `(minibuffer-prompt ((t (:foreground ,df-l-cyan))))
    '(highlight ((t (:weight bold :underline t))))
-   `(region ((t (:background ,dark-forest-bg-3))))
-   `(secondary-selection ((t (:background ,dark-forest-bg-2))))
-   `(trailing-whitespace ((t (:background ,dark-forest-m-red))))
+   `(region ((t (:background ,df-bg-3))))
+   `(secondary-selection ((t (:background ,df-bg-2))))
+   `(trailing-whitespace ((t (:background ,df-m-red))))
 
    '(button ((t (:inherit link))))
-   `(link ((t (:foreground ,dark-forest-m-cyan :underline t))))
-   `(link-visited ((t (:inherit link :foreground ,dark-forest-m-violet))))
+   `(link ((t (:foreground ,df-m-cyan :underline t))))
+   `(link-visited ((t (:inherit link :foreground ,df-m-violet))))
    '(fringe ((t (:background "grey10"))))
    '(match ((t (:background "RoyalBlue3"))))
    '(next-error ((t (:inherit region))))
 
-   `(shadow ((t (:foreground ,dark-forest-gray))))
-   `(error ((t (:inherit error :foreground ,dark-forest-l-red :weight bold))))
-   `(warning ((t (:foreground ,dark-forest-l-orange))))
+   `(shadow ((t (:foreground ,df-gray))))
+   `(error ((t (:inherit error :foreground ,df-l-red :weight bold))))
+   `(warning ((t (:foreground ,df-l-orange))))
 
    ;; ---- After this line only new, validated stuff ----
 
    ;; Calendar
-   `(holiday ((t (:foreground ,dark-forest-l-red))))
-   `(calendar-today ((t (:foreground ,dark-forest-l-green))))
-   `(diary ((t (:foreground ,dark-forest-l-blue))))
+   `(holiday ((t (:foreground ,df-l-red))))
+   `(calendar-today ((t (:foreground ,df-l-green))))
+   `(diary ((t (:foreground ,df-l-blue))))
 
    ;; Comint
-   `(comint-highlight-input ((t (:foreground ,dark-forest-fg-white))))
-   `(comint-highlight-prompt ((t (:foreground ,dark-forest-l-cyan))))
+   `(comint-highlight-input ((t (:foreground ,df-fg-white))))
+   `(comint-highlight-prompt ((t (:foreground ,df-l-cyan))))
 
    ;; Compilation
-   `(compilation-info ((t (:foreground ,dark-forest-m-green :weight normal))))
-   `(compilation-line-number ((t (:foreground ,dark-forest-sl-blue))))
-   `(compilation-column-number ((t (:foreground ,dark-forest-sl-orange))))
-   `(compilation-error ((t (:foreground ,dark-forest-m-red))))
-   `(compilation-warning ((t (:foreground ,dark-forest-d-yellow))))
+   `(compilation-info ((t (:foreground ,df-m-green :weight normal))))
+   `(compilation-line-number ((t (:foreground ,df-sl-blue))))
+   `(compilation-column-number ((t (:foreground ,df-sl-orange))))
+   `(compilation-error ((t (:foreground ,df-m-red))))
+   `(compilation-warning ((t (:foreground ,df-d-yellow))))
 
    ;; Custom mode
-   `(custom-invalid ((t (:foregournd ,dark-forest-l-red))))
-   `(custom-group-tag ((t (:foreground ,dark-forest-m-blue))))
-   `(custom-state ((t (:foreground ,dark-forest-m-green))))
-   `(custom-variable-tag ((t (:foreground ,dark-forest-l-blue))))
-   `(custom-comment-tag ((t (:foreground ,dark-forest-gray))))
-   `(custom-button ((t (:background ,dark-forest-gray-80))))
-   `(custom-button-mouse ((t (:background ,dark-forest-fg-white))))
+   `(custom-invalid ((t (:foregournd ,df-l-red))))
+   `(custom-group-tag ((t (:foreground ,df-m-blue))))
+   `(custom-state ((t (:foreground ,df-m-green))))
+   `(custom-variable-tag ((t (:foreground ,df-l-blue))))
+   `(custom-comment-tag ((t (:foreground ,df-gray))))
+   `(custom-button ((t (:background ,df-gray-80))))
+   `(custom-button-mouse ((t (:background ,df-fg-white))))
    ;; TODO(erg): Theoretically there are other faces in this group, but I can't
    ;; see them ever used. :-/
 
    ;; Diff mode
-   `(diff-file-header ((t (:weight normal :foreground ,dark-forest-b-yellow
-                           :background ,dark-forest-bg-2))))
-   `(diff-header ((t (:foreground ,dark-forest-fg
-                      :background ,dark-forest-bg-2))))
-   `(diff-added ((t (:foreground ,dark-forest-l-green))))
-   `(diff-removed ((t (:foreground ,dark-forest-l-red))))
+   `(diff-file-header ((t (:weight normal :foreground ,df-b-yellow
+                           :background ,df-bg-2))))
+   `(diff-header ((t (:foreground ,df-fg
+                      :background ,df-bg-2))))
+   `(diff-added ((t (:foreground ,df-l-green))))
+   `(diff-removed ((t (:foreground ,df-l-red))))
 
    ;; EMMS
-   `(emms-stream-name ((t (:weight normal :foreground ,dark-forest-b-yellow))))
-   `(emms-stream-url-face ((t (:foreground ,dark-forest-sl-blue))))
-   `(emms-playlist-selected-face ((t (:foreground ,dark-forest-l-blue))))
-   `(emms-playlist-track-face ((t (:foreground ,dark-forest-m-yellow))))
+   `(emms-stream-name ((t (:weight normal :foreground ,df-b-yellow))))
+   `(emms-stream-url-face ((t (:foreground ,df-sl-blue))))
+   `(emms-playlist-selected-face ((t (:foreground ,df-l-blue))))
+   `(emms-playlist-track-face ((t (:foreground ,df-m-yellow))))
 
    ;; erc
-   `(erc-button ((t (:foreground ,dark-forest-m-cyan :weight normal :underline t))))
-   `(erc-current-nick-face ((t (:foreground ,dark-forest-l-red))))
-   `(erc-error-face ((t (:foreground ,dark-forest-m-red))))
-   `(erc-input-face ((t (:weight normal :foreground ,dark-forest-fg-white))))
-   `(erc-keyword-face ((t (:foreground ,dark-forest-m-green))))
-   `(erc-nick-default-face ((t (:weight normal :foreground ,dark-forest-sl-blue))))
-   `(erc-notice-face ((t (:weight normal :foreground ,dark-forest-dim-gray))))
-   `(erc-prompt-face ((t (:foreground "black" :background ,dark-forest-m-blue))))
-   `(erc-timestamp-face ((t (:foreground ,dark-forest-m-green))))
-   `(erc-my-nick-face ((t (:foreground ,dark-forest-l-red))))
+   `(erc-button ((t (:foreground ,df-m-cyan :weight normal :underline t))))
+   `(erc-current-nick-face ((t (:foreground ,df-l-red))))
+   `(erc-error-face ((t (:foreground ,df-m-red))))
+   `(erc-input-face ((t (:weight normal :foreground ,df-fg-white))))
+   `(erc-keyword-face ((t (:foreground ,df-m-green))))
+   `(erc-nick-default-face ((t (:weight normal :foreground ,df-sl-blue))))
+   `(erc-notice-face ((t (:weight normal :foreground ,df-dim-gray))))
+   `(erc-prompt-face ((t (:foreground "black" :background ,df-m-blue))))
+   `(erc-timestamp-face ((t (:foreground ,df-m-green))))
+   `(erc-my-nick-face ((t (:foreground ,df-l-red))))
 
    ;; TODO: Figure out what to do about teal.
-   `(fg:erc-color-face0 ((t (:foreground ,dark-forest-fg-white))))
+   `(fg:erc-color-face0 ((t (:foreground ,df-fg-white))))
    `(fg:erc-color-face1 ((t (:foreground "black"))))
-   `(fg:erc-color-face2 ((t (:foreground ,dark-forest-d-blue))))
-   `(fg:erc-color-face3 ((t (:foreground ,dark-forest-d-green))))
-   `(fg:erc-color-face4 ((t (:foreground ,dark-forest-d-red))))
-   `(fg:erc-color-face5 ((t (:foreground ,dark-forest-d-yellow))))
-   `(fg:erc-color-face6 ((t (:foreground ,dark-forest-d-violet))))
-   `(fg:erc-color-face7 ((t (:foreground ,dark-forest-d-orange))))
-   `(fg:erc-color-face8 ((t (:foreground ,dark-forest-m-yellow))))
-   `(fg:erc-color-face9 ((t (:foreground ,dark-forest-m-green))))
+   `(fg:erc-color-face2 ((t (:foreground ,df-d-blue))))
+   `(fg:erc-color-face3 ((t (:foreground ,df-d-green))))
+   `(fg:erc-color-face4 ((t (:foreground ,df-d-red))))
+   `(fg:erc-color-face5 ((t (:foreground ,df-d-yellow))))
+   `(fg:erc-color-face6 ((t (:foreground ,df-d-violet))))
+   `(fg:erc-color-face7 ((t (:foreground ,df-d-orange))))
+   `(fg:erc-color-face8 ((t (:foreground ,df-m-yellow))))
+   `(fg:erc-color-face9 ((t (:foreground ,df-m-green))))
    '(fg:erc-color-face10 ((t (:foreground "teal"))))
-   `(fg:erc-color-face11 ((t (:foreground ,dark-forest-m-cyan))))
-   `(fg:erc-color-face12 ((t (:foreground ,dark-forest-m-blue))))
-   `(fg:erc-color-face13 ((t (:foreground ,dark-forest-m-violet))))
-   `(fg:erc-color-face14 ((t (:foreground ,dark-forest-dim-gray))))
-   `(fg:erc-color-face15 ((t (:foreground ,dark-forest-gray))))
-   `(bg:erc-color-face0 ((t (:background ,dark-forest-fg-white))))
+   `(fg:erc-color-face11 ((t (:foreground ,df-m-cyan))))
+   `(fg:erc-color-face12 ((t (:foreground ,df-m-blue))))
+   `(fg:erc-color-face13 ((t (:foreground ,df-m-violet))))
+   `(fg:erc-color-face14 ((t (:foreground ,df-dim-gray))))
+   `(fg:erc-color-face15 ((t (:foreground ,df-gray))))
+   `(bg:erc-color-face0 ((t (:background ,df-fg-white))))
    `(bg:erc-color-face1 ((t (:background "black"))))
-   `(bg:erc-color-face2 ((t (:background ,dark-forest-d-blue))))
-   `(bg:erc-color-face3 ((t (:background ,dark-forest-d-green))))
-   `(bg:erc-color-face4 ((t (:background ,dark-forest-d-red))))
-   `(bg:erc-color-face5 ((t (:background ,dark-forest-d-yellow))))
-   `(bg:erc-color-face6 ((t (:background ,dark-forest-d-violet))))
-   `(bg:erc-color-face7 ((t (:background ,dark-forest-d-orange))))
-   `(bg:erc-color-face8 ((t (:background ,dark-forest-m-yellow))))
-   `(bg:erc-color-face9 ((t (:background ,dark-forest-m-green))))
+   `(bg:erc-color-face2 ((t (:background ,df-d-blue))))
+   `(bg:erc-color-face3 ((t (:background ,df-d-green))))
+   `(bg:erc-color-face4 ((t (:background ,df-d-red))))
+   `(bg:erc-color-face5 ((t (:background ,df-d-yellow))))
+   `(bg:erc-color-face6 ((t (:background ,df-d-violet))))
+   `(bg:erc-color-face7 ((t (:background ,df-d-orange))))
+   `(bg:erc-color-face8 ((t (:background ,df-m-yellow))))
+   `(bg:erc-color-face9 ((t (:background ,df-m-green))))
    '(bg:erc-color-face10 ((t (:background "teal"))))
-   `(bg:erc-color-face11 ((t (:background ,dark-forest-m-cyan))))
-   `(bg:erc-color-face12 ((t (:background ,dark-forest-m-blue))))
-   `(bg:erc-color-face13 ((t (:background ,dark-forest-m-violet))))
-   `(bg:erc-color-face14 ((t (:background ,dark-forest-dim-gray))))
-   `(bg:erc-color-face15 ((t (:background ,dark-forest-gray))))
+   `(bg:erc-color-face11 ((t (:background ,df-m-cyan))))
+   `(bg:erc-color-face12 ((t (:background ,df-m-blue))))
+   `(bg:erc-color-face13 ((t (:background ,df-m-violet))))
+   `(bg:erc-color-face14 ((t (:background ,df-dim-gray))))
+   `(bg:erc-color-face15 ((t (:background ,df-gray))))
 
    ;; Flyspell colors
-   `(flyspell-duplicate ((t (:foreground ,dark-forest-d-yellow :weight bold))))
-   `(flyspell-incorrect ((t (:foreground ,dark-forest-d-red :weight bold))))
+   `(flyspell-duplicate ((t (:foreground ,df-d-yellow :weight bold))))
+   `(flyspell-incorrect ((t (:foreground ,df-d-red :weight bold))))
 
    ;; font lock
-   `(font-lock-builtin-face ((t (:foreground ,dark-forest-l-blue))))
-   `(font-lock-comment-face ((t (:foreground ,dark-forest-dim-gray))))
+   `(font-lock-builtin-face ((t (:foreground ,df-l-blue))))
+   `(font-lock-comment-face ((t (:foreground ,df-dim-gray))))
    '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
-   `(font-lock-constant-face ((t (:foreground ,dark-forest-gray))))
-   `(font-lock-doc-face ((t (:foreground ,dark-forest-dim-gray))))
-   `(font-lock-function-name-face ((t (:foreground ,dark-forest-m-blue))))
-   `(font-lock-keyword-face ((t (:foreground ,dark-forest-m-cyan))))
+   `(font-lock-constant-face ((t (:foreground ,df-gray))))
+   `(font-lock-doc-face ((t (:foreground ,df-dim-gray))))
+   `(font-lock-function-name-face ((t (:foreground ,df-m-blue))))
+   `(font-lock-keyword-face ((t (:foreground ,df-m-cyan))))
    '(font-lock-negation-char-face ((t nil)))
-   `(font-lock-preprocessor-face ((t (:foreground ,dark-forest-ssl-blue))))
+   `(font-lock-preprocessor-face ((t (:foreground ,df-ssl-blue))))
    '(font-lock-regexp-grouping-backslash ((t (:weight bold))))
    '(font-lock-regexp-grouping-construct ((t (:weight bold))))
-   `(font-lock-string-face ((t (:foreground ,dark-forest-m-orange))))
-   `(font-lock-type-face ((t (:foreground ,dark-forest-m-green))))
-   `(font-lock-variable-name-face ((t (:foreground ,dark-forest-sl-blue))))
-   `(font-lock-warning-face ((t (:inherit error :foreground ,dark-forest-l-red
+   `(font-lock-string-face ((t (:foreground ,df-m-orange))))
+   `(font-lock-type-face ((t (:foreground ,df-m-green))))
+   `(font-lock-variable-name-face ((t (:foreground ,df-sl-blue))))
+   `(font-lock-warning-face ((t (:inherit error :foreground ,df-l-red
                                           :weight bold))))
 
    ;; help-argument: Just a slight lightening of arguments to make them stand
    ;; out just a bit, but not a :wight bold bit. Consider making this a sl
    ;; variant.
-   `(help-argument-name ((t (:foreground ,dark-forest-l-yellow))))
+   `(help-argument-name ((t (:foreground ,df-l-yellow))))
 
    ;; ido
-   `(ido-first-match ((t (:foreground ,dark-forest-m-yellow :weight bold))))
-   `(ido-only-match ((t (:foreground ,dark-forest-m-green))))
-   `(ido-subdir ((t (:foreground ,dark-forest-l-blue))))
+   `(ido-first-match ((t (:foreground ,df-m-yellow :weight bold))))
+   `(ido-only-match ((t (:foreground ,df-m-green))))
+   `(ido-subdir ((t (:foreground ,df-l-blue))))
 
    ;; info
-   `(info-title-1 ((t (:foreground ,dark-forest-fg-white))))
-   `(info-title-2 ((t (:foreground ,dark-forest-gray))))
-   `(info-title-3 ((t (:foreground ,dark-forest-dim-gray))))
-   `(info-header-node ((t (:foreground ,dark-forest-fg-white))))
-   `(info-menu-header ((t (:foreground ,dark-forest-gray))))
-   `(info-menu-star ((t (:foreground ,dark-forest-m-red))))
+   `(info-title-1 ((t (:foreground ,df-fg-white))))
+   `(info-title-2 ((t (:foreground ,df-gray))))
+   `(info-title-3 ((t (:foreground ,df-dim-gray))))
+   `(info-header-node ((t (:foreground ,df-fg-white))))
+   `(info-menu-header ((t (:foreground ,df-gray))))
+   `(info-menu-star ((t (:foreground ,df-m-red))))
 
    ;; isearch
-   `(isearch ((t (:background ,dark-forest-l-red
-                  :foreground ,dark-forest-bg-red))))
-   `(isearch-fail ((t (:background ,dark-forest-bg-red))))
-   `(lazy-highlight ((t (:background ,dark-forest-bg-blue))))
+   `(isearch ((t (:background ,df-l-red
+                  :foreground ,df-bg-red))))
+   `(isearch-fail ((t (:background ,df-bg-red))))
+   `(lazy-highlight ((t (:background ,df-bg-blue))))
    '(query-replace ((t (:inherit isearch))))
 
    ;; makefile
-   `(makefile-space ((t (:background ,dark-forest-m-red))))
+   `(makefile-space ((t (:background ,df-m-red))))
 
    ;; modeline
-   `(header-line ((t (:inherit mode-line :background ,dark-forest-bg-2
-                               :foreground ,dark-forest-fg-white :box nil))))
-   `(mode-line ((t (:background ,dark-forest-gray-60 :foreground "black" :box (:line-width -1 :style released-button)))))
+   `(header-line ((t (:inherit mode-line :background ,df-bg-2
+                               :foreground ,df-fg-white :box nil))))
+   `(mode-line ((t (:background ,df-gray-60 :foreground "black" :box (:line-width -1 :style released-button)))))
    '(mode-line-buffer-id ((t (:weight bold))))
    '(mode-line-emphasis ((t (:weight bold))))
    '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
-   `(mode-line-inactive ((t (:inherit mode-line :background ,dark-forest-gray-30 :foreground "gray80" :box (:line-width -1 :color "grey40") :weight light))))
+   `(mode-line-inactive ((t (:inherit mode-line :background ,df-gray-30 :foreground "gray80" :box (:line-width -1 :color "grey40") :weight light))))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
-   `(org-date ((t (:foreground ,dark-forest-l-cyan :underline t))))
-   `(org-special-keyword ((t (:foreground ,dark-forest-l-yellow))))
-   `(org-level-1 ((t (:foreground ,dark-forest-m-blue))))
-   `(org-level-2 ((t (:foreground ,dark-forest-m-cyan))))
-   `(org-level-3 ((t (:foreground ,dark-forest-m-green))))
-   `(org-level-4 ((t (:foreground ,dark-forest-m-yellow))))
-   `(org-level-5 ((t (:foreground ,dark-forest-m-orange))))
-   `(org-level-6 ((t (:foreground ,dark-forest-m-red))))
-   `(org-level-7 ((t (:foreground ,dark-forest-m-violet))))
-   `(org-todo ((t (:foreground ,dark-forest-l-red :weight bold))))
+   `(org-date ((t (:foreground ,df-l-cyan :underline t))))
+   `(org-special-keyword ((t (:foreground ,df-l-yellow))))
+   `(org-level-1 ((t (:foreground ,df-m-blue))))
+   `(org-level-2 ((t (:foreground ,df-m-cyan))))
+   `(org-level-3 ((t (:foreground ,df-m-green))))
+   `(org-level-4 ((t (:foreground ,df-m-yellow))))
+   `(org-level-5 ((t (:foreground ,df-m-orange))))
+   `(org-level-6 ((t (:foreground ,df-m-red))))
+   `(org-level-7 ((t (:foreground ,df-m-violet))))
+   `(org-todo ((t (:foreground ,df-l-red :weight bold))))
 ))
 
 (provide-theme 'dark-forest)
