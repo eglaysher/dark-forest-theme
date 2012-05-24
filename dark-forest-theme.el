@@ -186,6 +186,22 @@ and value and returns a color hex string."
       (df-bg-red  "#660000")           ; 0/100/40
       (df-bg-blue "#3D4F66")           ; 214/40/40
 
+      ;; Mode specifiers. These are shorthand for the various places we have.
+      (truecolor '((class color) (min-colors 4096)))
+      (xterm256  '((class color) (min-colors 256)))
+      (term16    '((class color) (min-colors 16)))
+      (term8     '((class color) (min-colors 8)))
+
+      ;; Final color lists. These are the properties that should
+
+      (dark-forest-l-blue `((,truecolor (:for-backend ,df-l-blue))
+                            (t (:foreground "blue"))))
+
+      (dark-forest-gray `((,truecolor (:foreground ,df-gray))
+                          (t (:foreground "gray"))))
+      (dark-forest-dim-gray `((,truecolor (:foreground ,df-dim-gray))
+                              (t (:foregournd "gray"))))
+
       )
   (custom-theme-set-faces
    'dark-forest
@@ -208,7 +224,7 @@ and value and returns a color hex string."
    '(match ((t (:background "RoyalBlue3"))))
    '(next-error ((t (:inherit region))))
 
-   `(shadow ((t (:foreground ,df-gray))))
+   `(shadow ,dark-forest-gray)
    `(error ((t (:inherit error :foreground ,df-l-red :weight bold))))
    `(warning ((t (:foreground ,df-l-orange))))
 
@@ -217,7 +233,7 @@ and value and returns a color hex string."
    ;; Calendar
    `(holiday ((t (:foreground ,df-l-red))))
    `(calendar-today ((t (:foreground ,df-l-green))))
-   `(diary ((t (:foreground ,df-l-blue))))
+   `(diary ,dark-forest-l-blue)
 
    ;; Comint
    `(comint-highlight-input ((t (:foreground ,df-fg-white))))
@@ -234,8 +250,8 @@ and value and returns a color hex string."
    `(custom-invalid ((t (:foregournd ,df-l-red))))
    `(custom-group-tag ((t (:foreground ,df-m-blue))))
    `(custom-state ((t (:foreground ,df-m-green))))
-   `(custom-variable-tag ((t (:foreground ,df-l-blue))))
-   `(custom-comment-tag ((t (:foreground ,df-gray))))
+   `(custom-variable-tag ,dark-forest-l-blue)
+   `(custom-comment-tag ,dark-forest-gray)
    `(custom-button ((t (:background ,df-gray-80))))
    `(custom-button-mouse ((t (:background ,df-fg-white))))
    ;; TODO(erg): Theoretically there are other faces in this group, but I can't
@@ -252,7 +268,7 @@ and value and returns a color hex string."
    ;; EMMS
    `(emms-stream-name ((t (:weight normal :foreground ,df-b-yellow))))
    `(emms-stream-url-face ((t (:foreground ,df-sl-blue))))
-   `(emms-playlist-selected-face ((t (:foreground ,df-l-blue))))
+   `(emms-playlist-selected-face ,dark-forest-l-blue)
    `(emms-playlist-track-face ((t (:foreground ,df-m-yellow))))
 
    ;; erc
@@ -283,7 +299,7 @@ and value and returns a color hex string."
    `(fg:erc-color-face12 ((t (:foreground ,df-m-blue))))
    `(fg:erc-color-face13 ((t (:foreground ,df-m-violet))))
    `(fg:erc-color-face14 ((t (:foreground ,df-dim-gray))))
-   `(fg:erc-color-face15 ((t (:foreground ,df-gray))))
+   `(fg:erc-color-face15 ,dark-forest-gray)
    `(bg:erc-color-face0 ((t (:background ,df-fg-white))))
    `(bg:erc-color-face1 ((t (:background "black"))))
    `(bg:erc-color-face2 ((t (:background ,df-d-blue))))
@@ -306,10 +322,10 @@ and value and returns a color hex string."
    `(flyspell-incorrect ((t (:foreground ,df-d-red :weight bold))))
 
    ;; font lock
-   `(font-lock-builtin-face ((t (:foreground ,df-l-blue))))
+   `(font-lock-builtin-face ,dark-forest-l-blue)
    `(font-lock-comment-face ((t (:foreground ,df-dim-gray))))
    '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
-   `(font-lock-constant-face ((t (:foreground ,df-gray))))
+   `(font-lock-constant-face ,dark-forest-gray)
    `(font-lock-doc-face ((t (:foreground ,df-dim-gray))))
    `(font-lock-function-name-face ((t (:foreground ,df-m-blue))))
    `(font-lock-keyword-face ((t (:foreground ,df-m-cyan))))
@@ -331,14 +347,14 @@ and value and returns a color hex string."
    ;; ido
    `(ido-first-match ((t (:foreground ,df-m-yellow :weight bold))))
    `(ido-only-match ((t (:foreground ,df-m-green))))
-   `(ido-subdir ((t (:foreground ,df-l-blue))))
+   `(ido-subdir ,dark-forest-l-blue)
 
    ;; info
    `(info-title-1 ((t (:foreground ,df-fg-white))))
-   `(info-title-2 ((t (:foreground ,df-gray))))
+   `(info-title-2 ,dark-forest-gray)
    `(info-title-3 ((t (:foreground ,df-dim-gray))))
    `(info-header-node ((t (:foreground ,df-fg-white))))
-   `(info-menu-header ((t (:foreground ,df-gray))))
+   `(info-menu-header ,dark-forest-gray)
    `(info-menu-star ((t (:foreground ,df-m-red))))
 
    ;; isearch
