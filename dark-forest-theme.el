@@ -193,9 +193,25 @@ and value and returns a color hex string."
       (term8     '((class color) (min-colors 8)))
 
       ;; Final color lists. These are the properties that should
+      (dark-forest-sl-blue `((,truecolor (:foreground ,df-sl-blue))
+                             (t (:foreground "blue"))))
+      (dark-forest-sl-orange `((,truecolor (:foreground ,df-sl-orange))
+                               (t (:foreground "orange"))))
 
-      (dark-forest-l-blue `((,truecolor (:for-backend ,df-l-blue))
+      (dark-forest-l-red `((,truecolor (:foreground ,df-l-red))
+                           (t (:foreground "red"))))
+      (dark-forest-l-orange `((,truecolor (:foreground ,df-l-orange))
+                              (t (:foreground "orange"))))
+      (dark-forest-l-yellow `((,truecolor (:foreground ,df-l-yellow))
+                              (t (:foreground "yellow"))))
+      (dark-forest-l-green `((,truecolor (:foreground ,df-l-green))
+                              (t (:foreground "green"))))
+      (dark-forest-l-cyan `((,truecolor (:foreground ,df-l-cyan))
+                              (t (:foreground "cyan"))))
+      (dark-forest-l-blue `((,truecolor (:foreground ,df-l-blue))
                             (t (:foreground "blue"))))
+
+
 
       (dark-forest-gray `((,truecolor (:foreground ,df-gray))
                           (t (:foreground "gray"))))
@@ -210,8 +226,8 @@ and value and returns a color hex string."
    `(default ((t (:background ,df-bg :foreground ,df-fg
                               :weight normal :width normal))))
    '(cursor ((t (:background "yellow" :foreground "black"))))
-   `(escape-glyph ((t (:foreground ,df-l-cyan))))
-   `(minibuffer-prompt ((t (:foreground ,df-l-cyan))))
+   `(escape-glyph ,dark-forest-l-cyan)
+   `(minibuffer-prompt ,dark-forest-l-cyan)
    '(highlight ((t (:weight bold :underline t))))
    `(region ((t (:background ,df-bg-3))))
    `(secondary-selection ((t (:background ,df-bg-2))))
@@ -226,28 +242,28 @@ and value and returns a color hex string."
 
    `(shadow ,dark-forest-gray)
    `(error ((t (:inherit error :foreground ,df-l-red :weight bold))))
-   `(warning ((t (:foreground ,df-l-orange))))
+   `(warning ,dark-forest-l-orange)
 
    ;; ---- After this line only new, validated stuff ----
 
    ;; Calendar
-   `(holiday ((t (:foreground ,df-l-red))))
-   `(calendar-today ((t (:foreground ,df-l-green))))
+   `(holiday ,dark-forest-l-red)
+   `(calendar-today ,dark-forest-l-green)
    `(diary ,dark-forest-l-blue)
 
    ;; Comint
    `(comint-highlight-input ((t (:foreground ,df-fg-white))))
-   `(comint-highlight-prompt ((t (:foreground ,df-l-cyan))))
+   `(comint-highlight-prompt ,dark-forest-l-cyan)
 
    ;; Compilation
    `(compilation-info ((t (:foreground ,df-m-green :weight normal))))
-   `(compilation-line-number ((t (:foreground ,df-sl-blue))))
-   `(compilation-column-number ((t (:foreground ,df-sl-orange))))
+   `(compilation-line-number ,dark-forest-sl-blue)
+   `(compilation-column-number ,dark-forest-sl-orange)
    `(compilation-error ((t (:foreground ,df-m-red))))
    `(compilation-warning ((t (:foreground ,df-d-yellow))))
 
    ;; Custom mode
-   `(custom-invalid ((t (:foregournd ,df-l-red))))
+   `(custom-invalid ,dark-forest-l-red)
    `(custom-group-tag ((t (:foreground ,df-m-blue))))
    `(custom-state ((t (:foreground ,df-m-green))))
    `(custom-variable-tag ,dark-forest-l-blue)
@@ -262,18 +278,18 @@ and value and returns a color hex string."
                            :background ,df-bg-2))))
    `(diff-header ((t (:foreground ,df-fg
                       :background ,df-bg-2))))
-   `(diff-added ((t (:foreground ,df-l-green))))
-   `(diff-removed ((t (:foreground ,df-l-red))))
+   `(diff-added ,dark-forest-l-green)
+   `(diff-removed ,dark-forest-l-red)
 
    ;; EMMS
    `(emms-stream-name ((t (:weight normal :foreground ,df-b-yellow))))
-   `(emms-stream-url-face ((t (:foreground ,df-sl-blue))))
+   `(emms-stream-url-face ,dark-forest-sl-blue)
    `(emms-playlist-selected-face ,dark-forest-l-blue)
    `(emms-playlist-track-face ((t (:foreground ,df-m-yellow))))
 
    ;; erc
    `(erc-button ((t (:foreground ,df-m-cyan :weight normal :underline t))))
-   `(erc-current-nick-face ((t (:foreground ,df-l-red))))
+   `(erc-current-nick-face ,dark-forest-l-red)
    `(erc-error-face ((t (:foreground ,df-m-red))))
    `(erc-input-face ((t (:weight normal :foreground ,df-fg-white))))
    `(erc-keyword-face ((t (:foreground ,df-m-green))))
@@ -281,7 +297,7 @@ and value and returns a color hex string."
    `(erc-notice-face ((t (:weight normal :foreground ,df-dim-gray))))
    `(erc-prompt-face ((t (:foreground "black" :background ,df-m-blue))))
    `(erc-timestamp-face ((t (:foreground ,df-m-green))))
-   `(erc-my-nick-face ((t (:foreground ,df-l-red))))
+   `(erc-my-nick-face ,dark-forest-l-red)
 
    ;; TODO: Figure out what to do about teal.
    `(fg:erc-color-face0 ((t (:foreground ,df-fg-white))))
@@ -335,14 +351,14 @@ and value and returns a color hex string."
    '(font-lock-regexp-grouping-construct ((t (:weight bold))))
    `(font-lock-string-face ((t (:foreground ,df-m-orange))))
    `(font-lock-type-face ((t (:foreground ,df-m-green))))
-   `(font-lock-variable-name-face ((t (:foreground ,df-sl-blue))))
+   `(font-lock-variable-name-face ,dark-forest-sl-blue)
    `(font-lock-warning-face ((t (:inherit error :foreground ,df-l-red
                                           :weight bold))))
 
    ;; help-argument: Just a slight lightening of arguments to make them stand
    ;; out just a bit, but not a :wight bold bit. Consider making this a sl
    ;; variant.
-   `(help-argument-name ((t (:foreground ,df-l-yellow))))
+   `(help-argument-name ,dark-forest-l-yellow)
 
    ;; ido
    `(ido-first-match ((t (:foreground ,df-m-yellow :weight bold))))
@@ -378,7 +394,7 @@ and value and returns a color hex string."
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ((t (:foreground ,df-l-cyan :underline t))))
-   `(org-special-keyword ((t (:foreground ,df-l-yellow))))
+   `(org-special-keyword ,dark-forest-l-yellow)
    `(org-level-1 ((t (:foreground ,df-m-blue))))
    `(org-level-2 ((t (:foreground ,df-m-cyan))))
    `(org-level-3 ((t (:foreground ,df-m-green))))
