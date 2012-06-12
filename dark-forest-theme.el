@@ -140,6 +140,7 @@ and value and returns a color hex string."
       (df-gray-60    (dfb-gray 60))
       (df-dim-gray   (dfb-gray 45))
       (df-gray-30    (dfb-gray 30))
+      (df-gray-15    (dfb-gray 15))
 
       (df-ssl-blue  (dfb-hsv dfb-blue   -25 -5))
 
@@ -256,8 +257,9 @@ and value and returns a color hex string."
    '(button ((t (:inherit link))))
    `(link ((t (:foreground ,df-m-cyan :underline t))))
    `(link-visited ((t (:inherit link :foreground ,df-m-violet))))
-   '(fringe ((t (:background "grey10"))))
+   `(fringe ((t (:background ,df-gray-15))))
    '(match ((t (:background "RoyalBlue3"))))
+   `(menu ((((type tty)) (:background "black" :foreground "white"))))
    '(next-error ((t (:inherit region))))
 
    `(shadow ,dark-forest-gray)
@@ -376,7 +378,7 @@ and value and returns a color hex string."
                                           :weight bold))))
 
    ;; help-argument: Just a slight lightening of arguments to make them stand
-   ;; out just a bit, but not a :wight bold bit. Consider making this a sl
+   ;; out just a bit, but not a :weight bold bit. Consider making this a sl
    ;; variant.
    `(help-argument-name ,dark-forest-l-yellow)
 
@@ -404,9 +406,14 @@ and value and returns a color hex string."
    `(makefile-space ((t (:background ,df-m-red))))
 
    ;; modeline
-   `(header-line ((t (:inherit mode-line :background ,df-bg-2
-                               :foreground ,df-fg-white :box nil))))
-   `(mode-line ((t (:background ,df-gray-60 :foreground "black" :box (:line-width -1 :style released-button)))))
+   `(header-line ((,truecolor (:inherit mode-line :background ,df-bg-2
+                               :foreground ,df-fg-white :box nil))
+                  (t (:background "black" :foreground "white"))))
+   `(mode-line
+     ((,truecolor (:background ,df-gray-60 :foreground "black"
+                   :box (:line-width -1 :style released-button)))
+      (,xterm256 (:background "white" :foreground "black"))
+      (t (:background "white" :foreground "black" :inverse-video nil))))
    '(mode-line-buffer-id ((t (:weight bold))))
    '(mode-line-emphasis ((t (:weight bold))))
    '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
