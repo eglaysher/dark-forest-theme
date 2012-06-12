@@ -192,7 +192,19 @@ and value and returns a color hex string."
       (term16    '((class color) (min-colors 16)))
       (term8     '((class color) (min-colors 8)))
 
-      ;; Final color lists. These are the properties that should
+      ;; Final color lists. If at all possible, use these properties instead of
+      ;; including raw colors per above.
+      (dark-forest-fg-white `((,truecolor (foreground ,df-fg-white))
+                              (t (:foreground "white"))))
+
+      (dark-forest-gray `((,truecolor (:foreground ,df-gray))
+                          (t (:foreground "gray"))))
+      (dark-forest-dim-gray `((,truecolor (:foreground ,df-dim-gray))
+                              (t (:foregournd "gray"))))
+
+      (dark-forest-ssl-blue `((,truecolor (:foreground ,df-ssl-blue))
+                              (t (:foreground "blue"))))
+
       (dark-forest-sl-blue `((,truecolor (:foreground ,df-sl-blue))
                              (t (:foreground "blue"))))
       (dark-forest-sl-orange `((,truecolor (:foreground ,df-sl-orange))
@@ -225,11 +237,6 @@ and value and returns a color hex string."
                             (t (:foreground "blue"))))
       (dark-forest-m-violet `((,truecolor (:foreground ,df-m-violet))
                             (t (:foreground "violet"))))
-
-      (dark-forest-gray `((,truecolor (:foreground ,df-gray))
-                          (t (:foreground "gray"))))
-      (dark-forest-dim-gray `((,truecolor (:foreground ,df-dim-gray))
-                              (t (:foregournd "gray"))))
 
       )
   (custom-theme-set-faces
@@ -265,7 +272,7 @@ and value and returns a color hex string."
    `(diary ,dark-forest-l-blue)
 
    ;; Comint
-   `(comint-highlight-input ((t (:foreground ,df-fg-white))))
+   `(comint-highlight-input ,dark-forest-fg-white)
    `(comint-highlight-prompt ,dark-forest-l-cyan)
 
    ;; Compilation
@@ -313,7 +320,7 @@ and value and returns a color hex string."
    `(erc-my-nick-face ,dark-forest-l-red)
 
    ;; TODO: Figure out what to do about teal.
-   `(fg:erc-color-face0 ((t (:foreground ,df-fg-white))))
+   `(fg:erc-color-face0 ,dark-forest-fg-white)
    `(fg:erc-color-face1 ((t (:foreground "black"))))
    `(fg:erc-color-face2 ((t (:foreground ,df-d-blue))))
    `(fg:erc-color-face3 ((t (:foreground ,df-d-green))))
@@ -352,14 +359,14 @@ and value and returns a color hex string."
 
    ;; font lock
    `(font-lock-builtin-face ,dark-forest-l-blue)
-   `(font-lock-comment-face ((t (:foreground ,df-dim-gray))))
+   `(font-lock-comment-face ,dark-forest-dim-gray)
    '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
    `(font-lock-constant-face ,dark-forest-gray)
-   `(font-lock-doc-face ((t (:foreground ,df-dim-gray))))
+   `(font-lock-doc-face ,dark-forest-dim-gray)
    `(font-lock-function-name-face ,dark-forest-m-blue)
    `(font-lock-keyword-face ,dark-forest-m-cyan)
    '(font-lock-negation-char-face ((t nil)))
-   `(font-lock-preprocessor-face ((t (:foreground ,df-ssl-blue))))
+   `(font-lock-preprocessor-face ,dark-forest-ssl-blue)
    '(font-lock-regexp-grouping-backslash ((t (:weight bold))))
    '(font-lock-regexp-grouping-construct ((t (:weight bold))))
    `(font-lock-string-face ,dark-forest-m-orange)
@@ -379,10 +386,10 @@ and value and returns a color hex string."
    `(ido-subdir ,dark-forest-l-blue)
 
    ;; info
-   `(info-title-1 ((t (:foreground ,df-fg-white))))
+   `(info-title-1 ,dark-forest-fg-white)
    `(info-title-2 ,dark-forest-gray)
-   `(info-title-3 ((t (:foreground ,df-dim-gray))))
-   `(info-header-node ((t (:foreground ,df-fg-white))))
+   `(info-title-3 ,dark-forest-dim-gray)
+   `(info-header-node ,dark-forest-fg-white)
    `(info-menu-header ,dark-forest-gray)
    `(info-menu-star ,dark-forest-m-red)
 
