@@ -195,18 +195,23 @@ and value and returns a color hex string."
 
       ;; Final color lists. If at all possible, use these properties instead of
       ;; including raw colors per above.
-      (dark-forest-fg-white `((,truecolor (foreground ,df-fg-white))
+      (dark-forest-fg-white `((,truecolor (:foreground ,df-fg-white))
+                              (,xterm256 (:foreground "#e4e4e4"))
                               (t (:foreground "white"))))
 
       (dark-forest-gray `((,truecolor (:foreground ,df-gray))
+                          (,xterm256 (:foreground "#b2b2b2"))
                           (t (:foreground "gray"))))
       (dark-forest-dim-gray `((,truecolor (:foreground ,df-dim-gray))
+                              (,xterm256 (:foreground "#767676"))
                               (t (:foregournd "gray"))))
 
       (dark-forest-ssl-blue `((,truecolor (:foreground ,df-ssl-blue))
+                              (,xterm256 (:foreground "#afd7d7"))
                               (t (:foreground "blue"))))
 
       (dark-forest-sl-blue `((,truecolor (:foreground ,df-sl-blue))
+                             (,xterm256 (:foreground "#afd7ff"))
                              (t (:foreground "blue"))))
       (dark-forest-sl-orange `((,truecolor (:foreground ,df-sl-orange))
                                (t (:foreground "orange"))))
@@ -227,13 +232,16 @@ and value and returns a color hex string."
       (dark-forest-m-red `((,truecolor (:foreground ,df-m-red))
                            (t (:foreground "red"))))
       (dark-forest-m-orange `((,truecolor (:foreground ,df-m-orange))
+                              (,xterm256 (:foreground "#ffaf87"))
                               (t (:foreground "orange"))))
       (dark-forest-m-yellow `((,truecolor (:foreground ,df-m-yellow))
                               (t (:foreground "yellow"))))
       (dark-forest-m-green `((,truecolor (:foreground ,df-m-green))
-                              (t (:foreground "green"))))
+                             (,xterm256 (:foreground "#87ff78"))
+                             (t (:foreground "green"))))
       (dark-forest-m-cyan `((,truecolor (:foreground ,df-m-cyan))
-                              (t (:foreground "cyan"))))
+                            (,xterm256 (:foreground "#5fd7d7"))
+                            (t (:foreground "cyan"))))
       (dark-forest-m-blue `((,truecolor (:foreground ,df-m-blue))
                             (t (:foreground "blue"))))
       (dark-forest-m-violet `((,truecolor (:foreground ,df-m-violet))
