@@ -227,6 +227,7 @@ and value and returns a color hex string."
       (dark-forest-l-cyan `((,truecolor (:foreground ,df-l-cyan))
                               (t (:foreground "cyan"))))
       (dark-forest-l-blue `((,truecolor (:foreground ,df-l-blue))
+                            (,xterm256 (:foreground "#87afff"))
                             (t (:foreground "blue"))))
 
       (dark-forest-m-red `((,truecolor (:foreground ,df-m-red))
@@ -243,6 +244,7 @@ and value and returns a color hex string."
                             (,xterm256 (:foreground "#5fd7d7"))
                             (t (:foreground "cyan"))))
       (dark-forest-m-blue `((,truecolor (:foreground ,df-m-blue))
+                            (,xterm256 (:foreground "#5f87ff"))
                             (t (:foreground "blue"))))
       (dark-forest-m-violet `((,truecolor (:foreground ,df-m-violet))
                             (t (:foreground "violet"))))
