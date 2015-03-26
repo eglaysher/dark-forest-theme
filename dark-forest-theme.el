@@ -20,17 +20,14 @@ done at build time; it's only recently that I considered the base
 pallet to be complete enough that I started hard coding the hex
 into this file.)")
 
-;; This at least works as is. BUT! Current problem: when I try to switch any of
-;; the hard coded strings to the variables, I get stringp errors. This only
-;; seems to work hard coded.
-(defmacro df-build-fg (color-tuple)
+;; This at least works as is.
+(defun df-build-fg (color-tuple)
   (let ((truecolor (elt color-tuple 0))
         (xterm256 (elt color-tuple 1))
         (simple (elt color-tuple 2)))
-    (quote `((((class color) (min-colors 4096)) (:foreground "#A8F5FFFFA8F5"))
-             (((class color) (min-colors 256)) (:foreground "#afffaf"))
-             (t (:foreground "green"))))))
-
+    `((((class color) (min-colors 4096)) (:foreground ,truecolor))
+      (((class color) (min-colors 256)) (:foreground ,xterm256))
+      (t (:foreground ,simple)))))
 
 ;; You might want to view this in rainbow-mode.
 (let* (
@@ -70,7 +67,7 @@ into this file.)")
       (df-m-violet "#C3D67EB7E665")
 
       ;; Experimental new organizational syntax
-      (df-m-green-tuple  '("#9908FAE09908" "#87ff87" "brightgreen"))
+      (df-m-green-tuple  ["#9908FAE09908" "#87ff87" "brightgreen"])
 
       ;; Bolder colors. (hsv shift 20, 10)
       (df-b-yellow "#FFFFE7095999")
@@ -133,15 +130,9 @@ into this file.)")
                               (t (:foreground "orange"))))
       (dark-forest-l-yellow `((,truecolor (:foreground ,df-l-yellow))
                               (t (:foreground "yellow"))))
-
-
-      (dark-forest-l-green (df-build-fg 'df-m-green-tuple))
-
- ;; `((,truecolor (:foreground ,df-l-green))
- ;;                             (,xterm256 (:foreground "#afffaf"))
- ;;                             (t (:foreground "green"))))
-
-
+      (dark-forest-l-green `((,truecolor (:foreground ,df-l-green))
+                             (,xterm256 (:foreground "#afffaf"))
+                             (t (:foreground "green"))))
       (dark-forest-l-cyan `((,truecolor (:foreground ,df-l-cyan))
                             (,xterm256 (:foreground "#5fffff"))
                             (t (:foreground "cyan"))))
@@ -157,9 +148,7 @@ into this file.)")
                               (t (:foreground "orange"))))
       (dark-forest-m-yellow `((,truecolor (:foreground ,df-m-yellow))
                               (t (:foreground "yellow"))))
-      (dark-forest-m-green `((,truecolor (:foreground ,df-m-green))
-                             (,xterm256 (:foreground "#87ff87"))
-                             (t (:foreground "green"))))
+      (dark-forest-m-green (df-build-fg df-m-green-tuple))
       (dark-forest-m-cyan `((,truecolor (:foreground ,df-m-cyan))
                             (,xterm256 (:foreground "#5fd7d7"))
                             (t (:foreground "cyan"))))
