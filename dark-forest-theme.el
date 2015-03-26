@@ -57,10 +57,14 @@ into this file.)")
 
 ;; You might want to view this in rainbow-mode.
 (let* (
+      (fg-tuple       ["#EE13DE0182F1" "#ffd787" "brightwhite"])
+      (fg-white-tuple ["#EE13ED01E6EF" "#eeeeee" "brightwhite"]) ; gray-93
+
       (df-fg        "#EE13DE0182F1")
       (df-fg-white  "#EE13ED01E6EF") ; gray-93
 
-      ;; Our default grays have a subtle tint of amber in them. (hue=51, sat=3)
+      ;; Our grays on truecolor have a subtle tint of amber in them. (hue=51,
+      ;; sat=3) Otherwise, we fall back to the closest 256 safe gray.
       (df-gray-80    "#CCCCCBE0C6A7")
       (df-gray       "#B332B264ADD2")
       (df-gray-60    "#999998E894FD")
@@ -77,11 +81,12 @@ into this file.)")
 
       ;; The light set of colors. (hsv shift -5, 5)
       (df-l-red    "#F33291EA91EA")
-      (df-l-orange "#FFFFA9C487AD")
-      (df-l-yellow "#FAE0EBD29686")
-      (df-l-green  "#A8F5FFFFA8F5")
-      (df-l-cyan   "#6D70F332F332")
-      (df-l-blue   "#9709CB84FFFF")
+      (l-red-tuple    ["#F33291EA91EA" "#ffafaf" "brightred"])
+      (l-orange-tuple ["#FFFFA9C487AD" "#ffd7af" "brightyellow"])
+      (l-yellow-tuple ["#FAE0EBD29686" "#ffffaf" "brightyellow"])
+      (l-green-tuple  ["#A8F5FFFFA8F5" "#afffaf" "brightgreen"])
+      (l-cyan-tuple   ["#6D70F332F332" "#5fffff" "brightcyan"])
+      (l-blue-tuple   ["#9709CB84FFFF" "#87afff" "brightblue"])
 
       ;; "Medium" colors. (hsv shift 0, 0)
       (m-red-tuple    ["#E6657EB77EB7" "#ff8787" "brightred"])
@@ -127,9 +132,7 @@ into this file.)")
 
       ;; Final color lists. If at all possible, use these properties instead of
       ;; including raw colors per above.
-      (dark-forest-fg-white `((,truecolor (:foreground ,df-fg-white))
-                              (,xterm256 (:foreground "#e4e4e4"))
-                              (t (:foreground "white"))))
+      (dark-forest-fg-white (df-build-fg fg-white-tuple))
 
       (dark-forest-gray `((,truecolor (:foreground ,df-gray))
                           (,xterm256 (:foreground "#b2b2b2"))
@@ -149,23 +152,12 @@ into this file.)")
                               (,xterm256 (:foreground "#ffd7d7"))
                               (t (:foreground "orange"))))
 
-      (dark-forest-l-red `((,truecolor (:foreground ,df-l-red))
-                           (,xterm256 (:foreground "#ff8787"))
-                           (t (:foreground "red"))))
-      (dark-forest-l-orange `((,truecolor (:foreground ,df-l-orange))
-                              (,xterm256 (:foreground "#ffd7af"))
-                              (t (:foreground "orange"))))
-      (dark-forest-l-yellow `((,truecolor (:foreground ,df-l-yellow))
-                              (t (:foreground "yellow"))))
-      (dark-forest-l-green `((,truecolor (:foreground ,df-l-green))
-                             (,xterm256 (:foreground "#afffaf"))
-                             (t (:foreground "green"))))
-      (dark-forest-l-cyan `((,truecolor (:foreground ,df-l-cyan))
-                            (,xterm256 (:foreground "#5fffff"))
-                            (t (:foreground "cyan"))))
-      (dark-forest-l-blue `((,truecolor (:foreground ,df-l-blue))
-                            (,xterm256 (:foreground "#87afff"))
-                            (t (:foreground "blue"))))
+      (dark-forest-l-red (df-build-fg l-red-tuple))
+      (dark-forest-l-orange (df-build-fg l-orange-tuple))
+      (dark-forest-l-yellow (df-build-fg l-yellow-tuple))
+      (dark-forest-l-green (df-build-fg l-green-tuple))
+      (dark-forest-l-cyan (df-build-fg l-cyan-tuple))
+      (dark-forest-l-blue (df-build-fg l-blue-tuple))
 
       (dark-forest-m-red (df-build-fg m-red-tuple))
       (dark-forest-m-orange (df-build-fg m-orange-tuple))
@@ -198,7 +190,7 @@ into this file.)")
    '(next-error ((t (:inherit region))))
 
    `(shadow ,dark-forest-gray)
-   `(error ((t (:inherit error :foreground ,df-l-red :weight bold))))
+   `(error ,(df-build-fg l-red-tuple ':weight 'bold ':inherit 'error))
    `(warning ,dark-forest-l-orange)
 
    ;; ---- After this line only new, validated stuff ----
@@ -309,8 +301,8 @@ into this file.)")
    `(font-lock-string-face ,dark-forest-m-orange)
    `(font-lock-type-face ,dark-forest-m-green)
    `(font-lock-variable-name-face ,dark-forest-sl-blue)
-   `(font-lock-warning-face ((t (:inherit error :foreground ,df-l-red
-                                          :weight bold))))
+   `(font-lock-warning-face
+     ,(df-build-fg l-red-tuple ':weight 'bold ':inherit 'error))
 
    ;; help-argument: Just a slight lightening of arguments to make them stand
    ;; out just a bit, but not a :weight bold bit. Consider making this a sl
@@ -355,7 +347,7 @@ into this file.)")
    `(mode-line-inactive ((t (:inherit mode-line :background ,df-gray-30 :foreground "gray80" :box (:line-width -1 :color "grey40") :weight light))))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
-   `(org-date ((t (:foreground ,df-l-cyan :underline t))))
+   `(org-date ,(df-build-fg l-cyan-tuple ':underline 't))
    `(org-special-keyword ,dark-forest-l-yellow)
    `(org-level-1 ,dark-forest-m-blue)
    `(org-level-2 ,dark-forest-m-cyan)
@@ -364,7 +356,7 @@ into this file.)")
    `(org-level-5 ,dark-forest-m-orange)
    `(org-level-6 ,dark-forest-m-red)
    `(org-level-7 ,dark-forest-m-violet)
-   `(org-todo ((t (:foreground ,df-l-red :weight bold))))
+   `(org-todo ,(df-build-fg l-red-tuple ':weight 'bold))
 ))
 
 (provide-theme 'dark-forest)
