@@ -29,6 +29,14 @@ into this file.)")
       (((class color) (min-colors 256)) (:foreground ,xterm256))
       (t (:foreground ,simple)))))
 
+(defun df-build-bg (color-tuple)
+  (let ((truecolor (elt color-tuple 0))
+        (xterm256 (elt color-tuple 1))
+        (simple (elt color-tuple 2)))
+    `((((class color) (min-colors 4096)) (:background ,truecolor))
+      (((class color) (min-colors 256)) (:background ,xterm256))
+      (t (:background ,simple)))))
+
 ;; You might want to view this in rainbow-mode.
 (let* (
       (df-fg        "#EE13DE0182F1")
@@ -67,12 +75,13 @@ into this file.)")
       (df-m-violet "#C3D67EB7E665")
 
       ;; Experimental new organizational syntax
-      (m-red-tuple    ["#E6657EB77EB7" "#ff5f5f" "brightred"])
+      (m-red-tuple    ["#E6657EB77EB7" "#ff8787" "brightred"])
       (m-orange-tuple ["#FFFFA0987AE0" "#ffaf87" "brightyellow"])
-      ; yellow
+      (m-yellow-tuple ["#EE13DE0182F1" "#ffff87" "brightyellow"])
       (m-green-tuple  ["#9908FAE09908" "#87ff87" "brightgreen"])
       (m-cyan-tuple   ["#5C28E665E665" "#5fd7d7" "brightcyan"])
-      (m-blue-tuple   ["#8353BB42F332" "#5f87ff" "brightblue"])
+      (m-blue-tuple   ["#8353BB42F332" "#87afff" "brightblue"])
+      (m-violet-tuple ["#C3D67EB7E665" "#d787d7" "birghtmagenta"])
 
       ;; Bolder colors. (hsv shift 20, 10)
       (df-b-yellow "#FFFFE7095999")
@@ -168,7 +177,7 @@ into this file.)")
    '(highlight ((t (:weight bold :underline t))))
    `(region ((t (:background ,df-bg-3))))
    `(secondary-selection ((t (:background ,df-bg-2))))
-   `(trailing-whitespace ((t (:background ,df-m-red))))
+   `(trailing-whitespace ,(df-build-bg m-red-tuple))
 
    '(button ((t (:inherit link))))
    `(link ((t (:foreground ,df-m-cyan :underline t))))
@@ -319,7 +328,7 @@ into this file.)")
    '(query-replace ((t (:inherit isearch))))
 
    ;; makefile
-   `(makefile-space ((t (:background ,df-m-red))))
+   `(makefile-space ,(df-build-bg m-red-tuple))
 
    ;; modeline
    `(header-line ((,truecolor (:inherit mode-line :background ,df-bg-2
