@@ -21,21 +21,39 @@ pallet to be complete enough that I started hard coding the hex
 into this file.)")
 
 ;; This at least works as is.
-(defun df-build-fg (color-tuple)
-  (let ((truecolor (elt color-tuple 0))
-        (xterm256 (elt color-tuple 1))
-        (simple (elt color-tuple 2)))
-    `((((class color) (min-colors 4096)) (:foreground ,truecolor))
-      (((class color) (min-colors 256)) (:foreground ,xterm256))
-      (t (:foreground ,simple)))))
+(defun df-build-fg (color-tuple &rest e)
+  "For Dark Forest theme. Takes a tuple and a set of properties
+  and creates truecolor, 256 safe and 16 color variants of a
+  foreground."
+  (let ((truecolor (append `(:foreground ,(elt color-tuple 0)) e))
+        (xterm256 (append `(:foreground ,(elt color-tuple 1)) e))
+        (simple (append `(:foreground ,(elt color-tuple 2)) e)))
+    `((((class color) (min-colors 4096)) ,truecolor)
+      (((class color) (min-colors 256)) ,xterm256)
+      (t ,simple))))
 
-(defun df-build-bg (color-tuple)
-  (let ((truecolor (elt color-tuple 0))
-        (xterm256 (elt color-tuple 1))
-        (simple (elt color-tuple 2)))
-    `((((class color) (min-colors 4096)) (:background ,truecolor))
-      (((class color) (min-colors 256)) (:background ,xterm256))
-      (t (:background ,simple)))))
+(defun df-build-bg (color-tuple &rest e)
+  "For Dark Forest theme. Like `df-build-fg', but for the background."
+  (let ((truecolor (append `(:background ,(elt color-tuple 0)) e))
+        (xterm256 (append `(:background ,(elt color-tuple 1)) e))
+        (simple (append `(:background ,(elt color-tuple 2)) e)))
+    `((((class color) (min-colors 4096)) ,truecolor)
+      (((class color) (min-colors 256)) ,xterm256)
+      (t ,simple))))
+
+(defun df-build-fgbg (fg-tuple bg-tuple &rest e)
+  "For Dark Forest theme. Like `df-build-fg', but takes tuples
+  for both the foregorund and background."
+  (let ((truecolor (append `(:foreground ,(elt fg-tuple 0)
+                             :background ,(elt bg-tuple 0)) e))
+        (xterm256 (append `(:foreground ,(elt fg-tuple 1)
+                            :background ,(elt bg-tuple 1)) e))
+        (simple (append `(:foreground ,(elt fg-tuple 2)
+                          :background ,(elt bg-tuple 2)) e)))
+    `((((class color) (min-colors 4096)) ,truecolor)
+      (((class color) (min-colors 256)) ,xterm256)
+      (t ,simple))))
+
 
 ;; You might want to view this in rainbow-mode.
 (let* (
@@ -66,15 +84,6 @@ into this file.)")
       (df-l-blue   "#9709CB84FFFF")
 
       ;; "Medium" colors. (hsv shift 0, 0)
-      (df-m-red    "#E6657EB77EB7")
-      (df-m-orange "#FFFFA0987AE0")
-      (df-m-yellow "#EE13DE0182F1")
-      (df-m-green  "#9908FAE09908")
-      (df-m-cyan   "#5C28E665E665")
-      (df-m-blue   "#8353BB42F332")
-      (df-m-violet "#C3D67EB7E665")
-
-      ;; Experimental new organizational syntax
       (m-red-tuple    ["#E6657EB77EB7" "#ff8787" "brightred"])
       (m-orange-tuple ["#FFFFA0987AE0" "#ffaf87" "brightyellow"])
       (m-yellow-tuple ["#EE13DE0182F1" "#ffff87" "brightyellow"])
@@ -96,6 +105,10 @@ into this file.)")
       (df-d-cyan "#2FFFBFFFBFFF")
       (df-d-blue "#4FDE8E55CCCC")
       (df-d-violet "#99994CCCBFFF")
+
+      ;; Temporary black tuple until I figure out what's black and what should
+      ;; be bg.
+      (black-tuple ["#000000" "#000000" "#000000"])
 
       ;; "Black" background colors. Our "gray" has the slightest hint of amber
       ;; tint, but this is pure black/gray.
@@ -156,14 +169,11 @@ into this file.)")
 
       (dark-forest-m-red (df-build-fg m-red-tuple))
       (dark-forest-m-orange (df-build-fg m-orange-tuple))
-      (dark-forest-m-yellow `((,truecolor (:foreground ,df-m-yellow))
-                              (t (:foreground "yellow"))))
+      (dark-forest-m-yellow (df-build-fg m-yellow-tuple))
       (dark-forest-m-green (df-build-fg m-green-tuple))
       (dark-forest-m-cyan (df-build-fg m-cyan-tuple))
       (dark-forest-m-blue (df-build-fg m-blue-tuple))
-      (dark-forest-m-violet `((,truecolor (:foreground ,df-m-violet))
-                            (t (:foreground "violet"))))
-
+      (dark-forest-m-violet (df-build-fg m-violet-tuple))
       )
   (custom-theme-set-faces
    'dark-forest
@@ -180,8 +190,8 @@ into this file.)")
    `(trailing-whitespace ,(df-build-bg m-red-tuple))
 
    '(button ((t (:inherit link))))
-   `(link ((t (:foreground ,df-m-cyan :underline t))))
-   `(link-visited ((t (:inherit link :foreground ,df-m-violet))))
+   `(link ,(df-build-fg m-cyan-tuple ':underline 't))
+   `(link-visited ,(df-build-fg m-violet-tuple ':inherit 'link))
    `(fringe ((t (:background ,df-gray-15))))
    '(match ((t (:background "RoyalBlue3"))))
    `(menu ((((type tty)) (:background "black" :foreground "white"))))
@@ -203,7 +213,7 @@ into this file.)")
    `(comint-highlight-prompt ,dark-forest-l-cyan)
 
    ;; Compilation
-   `(compilation-info ((t (:foreground ,df-m-green :weight normal))))
+   `(compilation-info ,(df-build-fg m-green-tuple ':weight 'normal))
    `(compilation-line-number ,dark-forest-sl-blue)
    `(compilation-column-number ,dark-forest-sl-orange)
    `(compilation-error ,dark-forest-m-red)
@@ -235,14 +245,14 @@ into this file.)")
    `(emms-playlist-track-face ,dark-forest-m-yellow)
 
    ;; erc
-   `(erc-button ((t (:foreground ,df-m-cyan :weight normal :underline t))))
+   `(erc-button ,(df-build-fg m-cyan-tuple ':weight 'normal ':underline 't))
    `(erc-current-nick-face ,dark-forest-l-red)
    `(erc-error-face ,dark-forest-m-red)
    `(erc-input-face ((t (:weight normal :foreground ,df-fg-white))))
    `(erc-keyword-face ,dark-forest-m-green)
    `(erc-nick-default-face ((t (:weight normal :foreground ,df-sl-blue))))
    `(erc-notice-face ((t (:weight normal :foreground ,df-dim-gray))))
-   `(erc-prompt-face ((t (:foreground "black" :background ,df-m-blue))))
+   `(erc-prompt-face ,(df-build-fgbg black-tuple m-blue-tuple))
    `(erc-timestamp-face ,dark-forest-m-green)
    `(erc-my-nick-face ,dark-forest-l-red)
 
@@ -271,12 +281,12 @@ into this file.)")
    `(bg:erc-color-face5 ((t (:background ,df-d-yellow))))
    `(bg:erc-color-face6 ((t (:background ,df-d-violet))))
    `(bg:erc-color-face7 ((t (:background ,df-d-orange))))
-   `(bg:erc-color-face8 ((t (:background ,df-m-yellow))))
-   `(bg:erc-color-face9 ((t (:background ,df-m-green))))
+   `(bg:erc-color-face8 ,(df-build-bg m-yellow-tuple))
+   `(bg:erc-color-face9 ,(df-build-bg m-green-tuple))
    '(bg:erc-color-face10 ((t (:background "teal"))))
-   `(bg:erc-color-face11 ((t (:background ,df-m-cyan))))
-   `(bg:erc-color-face12 ((t (:background ,df-m-blue))))
-   `(bg:erc-color-face13 ((t (:background ,df-m-violet))))
+   `(bg:erc-color-face11 ,(df-build-bg m-cyan-tuple))
+   `(bg:erc-color-face12 ,(df-build-bg m-blue-tuple))
+   `(bg:erc-color-face13 ,(df-build-bg m-violet-tuple))
    `(bg:erc-color-face14 ((t (:background ,df-dim-gray))))
    `(bg:erc-color-face15 ((t (:background ,df-gray))))
 
@@ -308,7 +318,7 @@ into this file.)")
    `(help-argument-name ,dark-forest-l-yellow)
 
    ;; ido
-   `(ido-first-match ((t (:foreground ,df-m-yellow :weight bold))))
+   `(ido-first-match ,(df-build-fg m-yellow-tuple ':weight 'bold))
    `(ido-only-match ,dark-forest-m-green)
    `(ido-subdir ,dark-forest-l-blue)
 
