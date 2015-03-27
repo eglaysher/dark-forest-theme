@@ -197,8 +197,11 @@ into this file.)")
    `(comint-highlight-input ,dark-forest-fg-white)
    `(comint-highlight-prompt ,dark-forest-l-cyan)
 
-   ;; Compilation
+   ;; Compilation (TODO: Make the mode line use dd-red once it exists.)
    `(compilation-info ,(df-build-fg m-green ':weight 'normal))
+   `(compilation-mode-line-fail ,(df-build-fg d-red ':weight 'bold))
+   `(compilation-mode-line-run ,(df-build-fg d-yellow))
+   `(compilation-mode-line-exit ,(df-build-fg d-green ':weight 'bold))
    `(compilation-line-number ,dark-forest-sl-blue)
    `(compilation-column-number ,dark-forest-sl-orange)
    `(compilation-error ,dark-forest-m-red)
