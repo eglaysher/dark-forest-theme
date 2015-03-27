@@ -168,12 +168,14 @@ into this file.)")
    `(link-visited ,(df-build-fg m-violet ':inherit 'link))
    `(fringe ,(df-build-bg gray-15))
    '(match ((t (:background "RoyalBlue3"))))
-   `(menu ((((type tty)) (:background "black" :foreground "white"))))
+
    '(next-error ((t (:inherit region))))
 
+   `(help-argument-name ,dark-forest-l-yellow)
    `(shadow ,dark-forest-gray)
    `(error ,(df-build-fg l-red ':weight 'bold ':inherit 'error))
-   `(warning ,dark-forest-l-orange)
+   `(warning ,(df-build-fg l-orange ':weight 'bold))
+   `(success ,(df-build-fg l-green ':weight 'bold))
 
    ;; ---- After this line only new, validated stuff ----
 
@@ -285,15 +287,11 @@ into this file.)")
    `(font-lock-warning-face
      ,(df-build-fg l-red ':weight 'bold ':inherit 'error))
 
-   ;; help-argument: Just a slight lightening of arguments to make them stand
-   ;; out just a bit, but not a :weight bold bit. Consider making this a sl
-   ;; variant.
-   `(help-argument-name ,dark-forest-l-yellow)
-
    ;; ido
    `(ido-first-match ,(df-build-fg m-yellow ':weight 'bold))
    `(ido-only-match ,dark-forest-m-green)
    `(ido-subdir ,dark-forest-l-blue)
+   `(ido-indicator ,(df-build-fgbg m-yellow d-red ':width 'condensed))
 
    ;; info
    `(info-title-1 ,dark-forest-fg-white)
