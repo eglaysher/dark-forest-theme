@@ -219,11 +219,14 @@ into this file.)")
    ;; see them ever used. :-/
 
    ;; Diff mode
-   `(diff-file-header ,(df-build-fgbg b-yellow bg-2
-                                      ':weight 'normal))
    `(diff-header ,(df-build-fgbg fg bg-2))
-   `(diff-added ,dark-forest-l-green)
+   `(diff-file-header ,(df-build-fgbg b-yellow bg-2 ':weight 'normal))
+   `(diff-hunk-header ,(df-build-fgbg fg gray-15))
    `(diff-removed ,dark-forest-l-red)
+   `(diff-added ,dark-forest-l-green)
+   `(diff-indicator-removed ,(df-build-fg m-red))
+   `(diff-indicator-added ,(df-build-fg m-green))
+   `(diff-function ,(df-build-fgbg fg-white gray-15))
 
    ;; EMMS
    `(emms-stream-name ,(df-build-fg b-yellow ':weight 'normal))
