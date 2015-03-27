@@ -60,8 +60,12 @@ into this file.)")
       (fg-tuple       ["#EE13DE0182F1" "#ffd787" "brightwhite"])
       (fg-white-tuple ["#EE13ED01E6EF" "#eeeeee" "brightwhite"]) ; gray-93
 
-      (df-fg        "#EE13DE0182F1")
-      (df-fg-white  "#EE13ED01E6EF") ; gray-93
+      ;; "Black" background colors. Our "gray" has the slightest hint of amber
+      ;; tint, but this is pure black/gray. These colors are slightly adjusted
+      ;; on the xterm256 from the hsv values on the right.
+      (bg-tuple   ["#1a1a1a" "#1c1c1c" "black"])  ; 0/0/10
+      (bg-2-tuple ["#333333" "#303030" "black"])  ; 0/0/20
+      (bg-3-tuple ["#4D4D4D" "#4e4e4e" "brightblack"])  ; 0/0/30
 
       ;; Our grays on truecolor have a subtle tint of amber in them. (hue=51,
       ;; sat=3) Otherwise, we fall back to the closest 256 safe gray.
@@ -98,7 +102,8 @@ into this file.)")
       (m-violet-tuple ["#C3D67EB7E665" "#d787d7" "birghtmagenta"])
 
       ;; Bolder colors. (hsv shift 20, 10)
-      (df-b-yellow "#FFFFE7095999")
+      (df-b-yellow "#ffff5f")
+      (b-yellow-tuple ["#FFFFE7095999" "#ffff5f" "yellow"])
 
       ;; "Dark" colors, which have saturation 55 and value of 80. Mainly used
       ;; for flyspell checking. Significantly darker than any of the
@@ -114,12 +119,6 @@ into this file.)")
       ;; Temporary black tuple until I figure out what's black and what should
       ;; be bg.
       (black-tuple ["#000000" "#000000" "#000000"])
-
-      ;; "Black" background colors. Our "gray" has the slightest hint of amber
-      ;; tint, but this is pure black/gray.
-      (df-bg      "#1a1a1a")           ; 0/0/10
-      (df-bg-2    "#333333")           ; 0/0/20
-      (df-bg-3    "#4D4D4D")           ; 0/0/30
 
       (df-bg-red  "#660000")           ; 0/100/40
       (df-bg-blue "#3D4F66")           ; 214/40/40
@@ -171,14 +170,14 @@ into this file.)")
    'dark-forest
 
    ;; faces.el
-   `(default ((t (:background ,df-bg :foreground ,df-fg
-                              :weight normal :width normal))))
+   `(default ,(df-build-fgbg fg-tuple bg-tuple ':weight 'normal
+                             ':width 'normal))
    '(cursor ((t (:background "#ffff5f" :foreground "black"))))
    `(escape-glyph ,dark-forest-l-cyan)
    `(minibuffer-prompt ,dark-forest-l-cyan)
    '(highlight ((t (:weight bold :underline t))))
-   `(region ((t (:background ,df-bg-3))))
-   `(secondary-selection ((t (:background ,df-bg-2))))
+   `(region ,(df-build-bg bg-3-tuple))
+   `(secondary-selection ,(df-build-bg bg-2-tuple))
    `(trailing-whitespace ,(df-build-bg m-red-tuple))
 
    '(button ((t (:inherit link))))
@@ -218,15 +217,14 @@ into this file.)")
    `(custom-variable-tag ,dark-forest-l-blue)
    `(custom-comment-tag ,dark-forest-gray)
    `(custom-button ((t (:background ,df-gray-80))))
-   `(custom-button-mouse ((t (:background ,df-fg-white))))
+   `(custom-button-mouse  ,(df-build-bg fg-white-tuple))
    ;; TODO(erg): Theoretically there are other faces in this group, but I can't
    ;; see them ever used. :-/
 
    ;; Diff mode
-   `(diff-file-header ((t (:weight normal :foreground ,df-b-yellow
-                           :background ,df-bg-2))))
-   `(diff-header ((t (:foreground ,df-fg
-                      :background ,df-bg-2))))
+   `(diff-file-header ,(df-build-fgbg b-yellow-tuple bg-2-tuple
+                                      ':weight 'normal))
+   `(diff-header ,(df-build-fgbg fg-tuple bg-2-tuple))
    `(diff-added ,dark-forest-l-green)
    `(diff-removed ,dark-forest-l-red)
 
@@ -240,7 +238,7 @@ into this file.)")
    `(erc-button ,(df-build-fg m-cyan-tuple ':weight 'normal ':underline 't))
    `(erc-current-nick-face ,dark-forest-l-red)
    `(erc-error-face ,dark-forest-m-red)
-   `(erc-input-face ((t (:weight normal :foreground ,df-fg-white))))
+   `(erc-input-face ,(df-build-fg fg-white-tuple ':weight 'normal))
    `(erc-keyword-face ,dark-forest-m-green)
    `(erc-nick-default-face ((t (:weight normal :foreground ,df-sl-blue))))
    `(erc-notice-face ((t (:weight normal :foreground ,df-dim-gray))))
@@ -265,7 +263,7 @@ into this file.)")
    `(fg:erc-color-face13 ,dark-forest-m-violet)
    `(fg:erc-color-face14 ,dark-forest-dim-gray)
    `(fg:erc-color-face15 ,dark-forest-gray)
-   `(bg:erc-color-face0 ((t (:background ,df-fg-white))))
+   `(bg:erc-color-face0 ,(df-build-bg fg-white-tuple))
    `(bg:erc-color-face1 ((t (:background "black"))))
    `(bg:erc-color-face2 ((t (:background ,df-d-blue))))
    `(bg:erc-color-face3 ((t (:background ,df-d-green))))
@@ -333,9 +331,8 @@ into this file.)")
    `(makefile-space ,(df-build-bg m-red-tuple))
 
    ;; modeline
-   `(header-line ((,truecolor (:inherit mode-line :background ,df-bg-2
-                               :foreground ,df-fg-white :box nil))
-                  (t (:background "black" :foreground "white"))))
+   `(header-line ,(df-build-fgbg fg-white-tuple bg-2-tuple ':inherit 'mode-line
+                                 ':box 'nil))
    `(mode-line
      ((,truecolor (:background ,df-gray-60 :foreground "black"
                    :box (:line-width -1 :style released-button)))
