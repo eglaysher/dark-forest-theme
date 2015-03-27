@@ -69,12 +69,12 @@ into this file.)")
 
       ;; Our grays on truecolor have a subtle tint of amber in them. (hue=51,
       ;; sat=3) Otherwise, we fall back to the closest 256 safe gray.
-      (df-gray-80    "#CCCCCBE0C6A7")
-      (df-gray       "#B332B264ADD2")
-      (df-gray-60    "#999998E894FD")
-      (df-dim-gray   "#733272AE6FBE")
-      (df-gray-30    "#4CCC4C744A7E")
-      (df-gray-15    "#2666263A253F")
+      (gray-80-tuple   ["#CCCCCBE0C6A7" "#c6c6c6" "gray"])
+      (gray-tuple      ["#B332B264ADD2" "#b2b2b2" "gray"])
+      (gray-60-tuple   ["#999998E894FD" "#9e9e9e" "white"])
+      (dim-gray-tuple  ["#733272AE6FBE" "#767676" "brightblack"])
+      (gray-30-tuple   ["#4CCC4C744A7E" "#4e4e4e" "gray"])
+      (gray-15-tuple   ["#2666263A253F" "#262626" "gray"])
 
       ;; The super-superlight colors. (hsv shift -25, -5)
       (ssl-blue-tuple  ["#B603CE34E665" "#afd7d7" "blue"])
@@ -122,22 +122,12 @@ into this file.)")
       (df-bg-red  "#660000")           ; 0/100/40
       (df-bg-blue "#3D4F66")           ; 214/40/40
 
-      ;; Mode specifiers. These are shorthand for the various places we have.
-      (truecolor '((class color) (min-colors 4096)))
-      (xterm256  '((class color) (min-colors 256)))
-      (term16    '((class color) (min-colors 16)))
-      (term8     '((class color) (min-colors 8)))
-
       ;; Final color lists. If at all possible, use these properties instead of
       ;; including raw colors per above.
       (dark-forest-fg-white (df-build-fg fg-white-tuple))
 
-      (dark-forest-gray `((,truecolor (:foreground ,df-gray))
-                          (,xterm256 (:foreground "#b2b2b2"))
-                          (t (:foreground "gray"))))
-      (dark-forest-dim-gray `((,truecolor (:foreground ,df-dim-gray))
-                              (,xterm256 (:foreground "#767676"))
-                              (t (:foregournd "gray"))))
+      (dark-forest-gray (df-build-fg gray-tuple))
+      (dark-forest-dim-gray (df-build-fg dim-gray-tuple))
 
       (dark-forest-ssl-blue (df-build-fg ssl-blue-tuple))
 
@@ -165,7 +155,7 @@ into this file.)")
    ;; faces.el
    `(default ,(df-build-fgbg fg-tuple bg-tuple ':weight 'normal
                              ':width 'normal))
-   '(cursor ((t (:background "#ffff5f" :foreground "black"))))
+   `(cursor ,(df-build-fgbg black-tuple b-yellow-tuple))
    `(escape-glyph ,dark-forest-l-cyan)
    `(minibuffer-prompt ,dark-forest-l-cyan)
    '(highlight ((t (:weight bold :underline t))))
@@ -176,7 +166,7 @@ into this file.)")
    '(button ((t (:inherit link))))
    `(link ,(df-build-fg m-cyan-tuple ':underline 't))
    `(link-visited ,(df-build-fg m-violet-tuple ':inherit 'link))
-   `(fringe ((t (:background ,df-gray-15))))
+   `(fringe ,(df-build-bg gray-15-tuple))
    '(match ((t (:background "RoyalBlue3"))))
    `(menu ((((type tty)) (:background "black" :foreground "white"))))
    '(next-error ((t (:inherit region))))
@@ -209,7 +199,7 @@ into this file.)")
    `(custom-state ,dark-forest-m-green)
    `(custom-variable-tag ,dark-forest-l-blue)
    `(custom-comment-tag ,dark-forest-gray)
-   `(custom-button ((t (:background ,df-gray-80))))
+   `(custom-button ,(df-build-bg gray-80-tuple))
    `(custom-button-mouse  ,(df-build-bg fg-white-tuple))
    ;; TODO(erg): Theoretically there are other faces in this group, but I can't
    ;; see them ever used. :-/
@@ -234,7 +224,7 @@ into this file.)")
    `(erc-input-face ,(df-build-fg fg-white-tuple ':weight 'normal))
    `(erc-keyword-face ,dark-forest-m-green)
    `(erc-nick-default-face ,(df-build-fg sl-blue-tuple ':weight 'normal))
-   `(erc-notice-face ((t (:weight normal :foreground ,df-dim-gray))))
+   `(erc-notice-face ,(df-build-fg dim-gray-tuple ':weight 'normal))
    `(erc-prompt-face ,(df-build-fgbg black-tuple m-blue-tuple))
    `(erc-timestamp-face ,dark-forest-m-green)
    `(erc-my-nick-face ,dark-forest-l-red)
@@ -270,8 +260,8 @@ into this file.)")
    `(bg:erc-color-face11 ,(df-build-bg m-cyan-tuple))
    `(bg:erc-color-face12 ,(df-build-bg m-blue-tuple))
    `(bg:erc-color-face13 ,(df-build-bg m-violet-tuple))
-   `(bg:erc-color-face14 ((t (:background ,df-dim-gray))))
-   `(bg:erc-color-face15 ((t (:background ,df-gray))))
+   `(bg:erc-color-face14 ,(df-build-bg dim-gray-tuple))
+   `(bg:erc-color-face15 ,(df-build-bg gray-tuple))
 
    ;; Flyspell colors
    `(flyspell-duplicate ((t (:foreground ,df-d-yellow :weight bold))))
@@ -326,15 +316,15 @@ into this file.)")
    ;; modeline
    `(header-line ,(df-build-fgbg fg-white-tuple bg-2-tuple ':inherit 'mode-line
                                  ':box 'nil))
-   `(mode-line
-     ((,truecolor (:background ,df-gray-60 :foreground "black"
-                   :box (:line-width -1 :style released-button)))
-      (,xterm256 (:background "white" :foreground "black"))
-      (t (:background "white" :foreground "black" :inverse-video nil))))
+   ;; TODO: Make a custom tuple for the modeline.
+   `(mode-line ,(df-build-fgbg black-tuple gray-60-tuple
+                               ':box '(:line-width -1 :style released-button)))
    '(mode-line-buffer-id ((t (:weight bold))))
    '(mode-line-emphasis ((t (:weight bold))))
    '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
-   `(mode-line-inactive ((t (:inherit mode-line :background ,df-gray-30 :foreground "gray80" :box (:line-width -1 :color "grey40") :weight light))))
+   `(mode-line-inactive ,(df-build-fgbg gray-80-tuple gray-30-tuple
+                                        ':box '(:line-width -1 :color "grey40")
+                                        ':weight 'light))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan-tuple ':underline 't))
