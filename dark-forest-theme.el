@@ -155,27 +155,36 @@ into this file.)")
    ;; faces.el
    `(default ,(df-build-fgbg fg bg ':weight 'normal
                              ':width 'normal))
-   `(cursor ,(df-build-fgbg black b-yellow))
-   `(escape-glyph ,dark-forest-l-cyan)
-   `(minibuffer-prompt ,dark-forest-l-cyan)
+   `(shadow ,(df-build-fg gray))
+   `(link ,(df-build-fg m-cyan ':underline 't))
+   `(link-visited ,(df-build-fg m-violet ':inherit 'link))
    '(highlight ((t (:weight bold :underline t))))
    `(region ,(df-build-bg bg-3))
    `(secondary-selection ,(df-build-bg bg-2))
    `(trailing-whitespace ,(df-build-bg m-red))
-
-   '(button ((t (:inherit link))))
-   `(link ,(df-build-fg m-cyan ':underline 't))
-   `(link-visited ,(df-build-fg m-violet ':inherit 'link))
+   `(escape-glyph ,dark-forest-l-cyan)
+   `(mode-line ,(df-build-fgbg black gray-60
+                               ':box '(:line-width -1 :style released-button)))
+   `(mode-line-inactive ,(df-build-fgbg gray-80 gray-30
+                                        ':box '(:line-width -1 :color "grey40")
+                                        ':weight 'light))
+   '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
+   `(header-line ,(df-build-fgbg fg-white bg-2 ':inherit 'mode-line ':box 'nil))
+   `(minibuffer-prompt ,dark-forest-l-cyan)
    `(fringe ,(df-build-bg gray-15))
-   '(match ((t (:background "RoyalBlue3"))))
-
-   '(next-error ((t (:inherit region))))
-
+   `(cursor ,(df-build-fgbg black b-yellow))
+   `(menu ,(df-build-fgbg black gray-60))
    `(help-argument-name ,dark-forest-l-yellow)
    `(shadow ,dark-forest-gray)
    `(error ,(df-build-fg l-red ':weight 'bold ':inherit 'error))
    `(warning ,(df-build-fg l-orange ':weight 'bold))
    `(success ,(df-build-fg l-green ':weight 'bold))
+   `(tty-menu-enabled-face ,(df-build-fgbg gray-15 gray-80 ':weight 'bold))
+   `(tty-menu-disabled-face ,(df-build-fgbg gray-60 gray-80))
+   `(tty-menu-selected-face ,(df-build-bg d-red))
+
+   ;; replace.el
+   '(match ((t (:background "RoyalBlue3"))))
 
    ;; ---- After this line only new, validated stuff ----
 
@@ -309,19 +318,6 @@ into this file.)")
 
    ;; makefile
    `(makefile-space ,(df-build-bg m-red))
-
-   ;; modeline
-   `(header-line ,(df-build-fgbg fg-white bg-2 ':inherit 'mode-line
-                                 ':box 'nil))
-   ;; TODO: Make a custom tuple for the modeline.
-   `(mode-line ,(df-build-fgbg black gray-60
-                               ':box '(:line-width -1 :style released-button)))
-   '(mode-line-buffer-id ((t (:weight bold))))
-   '(mode-line-emphasis ((t (:weight bold))))
-   '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
-   `(mode-line-inactive ,(df-build-fgbg gray-80 gray-30
-                                        ':box '(:line-width -1 :color "grey40")
-                                        ':weight 'light))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
