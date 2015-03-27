@@ -63,8 +63,8 @@ into this file.)")
       ;; "Black" background colors. Our "gray" has the slightest hint of amber
       ;; tint, but this is pure black/gray. These colors are slightly adjusted
       ;; on the xterm256 from the hsv values on the right.
-      (bg-tuple   ["#1a1a1a" "#1c1c1c" "black"])  ; 0/0/10
-      (bg-2-tuple ["#333333" "#303030" "black"])  ; 0/0/20
+      (bg-tuple   ["#1a1a1a" "#1c1c1c" "black"])        ; 0/0/10
+      (bg-2-tuple ["#333333" "#303030" "black"])        ; 0/0/20
       (bg-3-tuple ["#4D4D4D" "#4e4e4e" "brightblack"])  ; 0/0/30
 
       ;; Our grays on truecolor have a subtle tint of amber in them. (hue=51,
@@ -84,7 +84,6 @@ into this file.)")
       (sl-orange-tuple ["#FFFFBC1DA147" "#ffd7d7" "orange"])
 
       ;; The light set of colors. (hsv shift -5, 5)
-      (df-l-red    "#F33291EA91EA")
       (l-red-tuple    ["#F33291EA91EA" "#ffafaf" "brightred"])
       (l-orange-tuple ["#FFFFA9C487AD" "#ffd7af" "brightyellow"])
       (l-yellow-tuple ["#FAE0EBD29686" "#ffffaf" "brightyellow"])
@@ -119,8 +118,9 @@ into this file.)")
       ;; be bg.
       (black-tuple ["#000000" "#000000" "#000000"])
 
-      (df-bg-red  "#660000")           ; 0/100/40
-      (df-bg-blue "#3D4F66")           ; 214/40/40
+      ;; TODO: These are unjustifiable. Maybe a dd-red and a dd-blue?
+      (bg-red-tuple ["#660000" "#5f0000" "red"])   ; 0/100/40
+      (bg-blue-tuple ["#3D4F66" "#5f87af" "blue"]) ; 214/40/40
 
       ;; Final color lists. If at all possible, use these properties instead of
       ;; including raw colors per above.
@@ -304,10 +304,9 @@ into this file.)")
    `(info-menu-star ,dark-forest-m-red)
 
    ;; isearch
-   `(isearch ((t (:background ,df-l-red
-                  :foreground ,df-bg-red))))
-   `(isearch-fail ((t (:background ,df-bg-red))))
-   `(lazy-highlight ((t (:background ,df-bg-blue))))
+   `(isearch ,(df-build-fgbg bg-red-tuple l-red-tuple))
+   `(isearch-fail ,(df-build-bg bg-red-tuple))
+   `(lazy-highlight ,(df-build-bg bg-blue-tuple))
    '(query-replace ((t (:inherit isearch))))
 
    ;; makefile
