@@ -152,6 +152,10 @@ into this file.)")
   (custom-theme-set-faces
    'dark-forest
 
+   ;; aprops.el
+   `(apropos-symbol ,(df-build-fg fg-white))
+   `(apropos-keybinding ,(df-build-fg gray-80 ':inherit 'underline))
+
    ;; faces.el
    `(default ,(df-build-fgbg fg bg ':weight 'normal ':width 'normal))
    `(shadow ,(df-build-fg gray))
