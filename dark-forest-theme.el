@@ -183,8 +183,18 @@ into this file.)")
    `(tty-menu-disabled-face ,(df-build-fgbg gray-60 gray-80))
    `(tty-menu-selected-face ,(df-build-bg d-red))
 
+   ;; git-gutter.el
+   `(git-gutter:separator ,(df-build-fg m-cyan ':weight 'bold))
+   `(git-gutter:modified ,(df-build-fg m-violet ':weight 'bold))
+   `(git-gutter:added ,(df-build-fg m-green ':weight 'bold))
+   `(git-gutter:deleted ,(df-build-fg m-red ':weight 'bold))
+   `(git-gutter:unchanged ,(df-build-bg l-yellow))
+
    ;; replace.el
    '(match ((t (:background "RoyalBlue3"))))
+
+   ;; mode-line-bell
+   `(mode-line-bell-face ,(df-build-fgbg bg d-red))
 
    ;; ---- After this line only new, validated stuff ----
 
