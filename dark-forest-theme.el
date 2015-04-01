@@ -153,8 +153,7 @@ into this file.)")
    'dark-forest
 
    ;; faces.el
-   `(default ,(df-build-fgbg fg bg ':weight 'normal
-                             ':width 'normal))
+   `(default ,(df-build-fgbg fg bg ':weight 'normal ':width 'normal))
    `(shadow ,(df-build-fg gray))
    `(link ,(df-build-fg m-cyan ':underline 't))
    `(link-visited ,(df-build-fg m-violet ':inherit 'link))
@@ -189,6 +188,13 @@ into this file.)")
    `(git-gutter:added ,(df-build-fg m-green ':weight 'bold))
    `(git-gutter:deleted ,(df-build-fg m-red ':weight 'bold))
    `(git-gutter:unchanged ,(df-build-bg l-yellow))
+
+   ;; git-commit-mode.el
+   '(git-commit-summary-face ((t (:inherit default))))
+   `(git-commit-comment-heading-face ,(df-build-fg m-blue))
+   `(git-commit-comment-file-face ,(df-build-fg gray-80))
+   `(git-commit-branch-face ,(df-build-fg ssl-blue))
+   `(git-commit-no-branch-face ,(df-build-fg l-red))
 
    ;; replace.el
    '(match ((t (:background "RoyalBlue3"))))
