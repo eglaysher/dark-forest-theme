@@ -200,6 +200,10 @@ into this file.)")
    `(git-commit-branch-face ,(df-build-fg ssl-blue))
    `(git-commit-no-branch-face ,(df-build-fg l-red))
 
+   ;; gn.el
+   `(gn-embedded-variable ,(df-build-fg sl-orange))
+   `(gn-embedded-variable-boundary ,(df-build-fg l-orange ':weight 'bold))
+
    ;; replace.el
    '(match ((t (:background "RoyalBlue3"))))
 
