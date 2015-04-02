@@ -195,7 +195,7 @@ into this file.)")
    ;; These are more complicated because we want to support the new :style
    ;; wave; we assume that if we have underline wave support, we're
    ;; truecolor. The underline colors are m-red and m-yellow, but the text
-   ;; colors are d-red and d-orange. (Sadly, copying the constants here is the
+   ;; colors are d-red and d-yellow. (Sadly, copying the constants here is the
    ;; simplest thing to do. :(
    '(flyspell-incorrect
      ((((supports :underline (:style wave)))
@@ -205,7 +205,7 @@ into this file.)")
    '(flyspell-duplicate
      ((((supports :underline (:style wave)))
         :underline (:style wave :color "#EE13DE0182F1"))
-       (((class color) (min-colors 256)) (:foreground "#d7875f"))
+       (((class color) (min-colors 256)) (:foreground "#d7af5f"))
        (t :foreground "orange")))
 
    ;; git-gutter.el
