@@ -186,6 +186,28 @@ into this file.)")
    `(tty-menu-disabled-face ,(df-build-fgbg gray-60 gray-80))
    `(tty-menu-selected-face ,(df-build-bg d-red))
 
+   ;; flymake.el
+   '(flymake-errline ((t (:inherit flyspell-incorrect))))
+   '(flymake-warnline ((t (:inherit flyspell-duplicate))))
+
+   ;; flyspell.el
+   ;;
+   ;; These are more complicated because we want to support the new :style
+   ;; wave; we assume that if we have underline wave support, we're
+   ;; truecolor. The underline colors are m-red and m-yellow, but the text
+   ;; colors are d-red and d-orange. (Sadly, copying the constants here is the
+   ;; simplest thing to do. :(
+   '(flyspell-incorrect
+     ((((supports :underline (:style wave)))
+        :underline (:style wave :color "#E6657EB77EB7"))
+       (((class color) (min-colors 256)) (:foreground "#af5f5f"))
+       (t :foreground "red")))
+   '(flyspell-duplicate
+     ((((supports :underline (:style wave)))
+        :underline (:style wave :color "#EE13DE0182F1"))
+       (((class color) (min-colors 256)) (:foreground "#d7875f"))
+       (t :foreground "orange")))
+
    ;; git-gutter.el
    `(git-gutter:separator ,(df-build-fg m-cyan ':weight 'bold))
    `(git-gutter:modified ,(df-build-fg m-violet ':weight 'bold))
@@ -204,13 +226,10 @@ into this file.)")
    `(gn-embedded-variable ,(df-build-fg sl-orange))
    `(gn-embedded-variable-boundary ,(df-build-fg l-orange ':weight 'bold))
 
-   ;; replace.el
-   '(match ((t (:background "RoyalBlue3"))))
-
    ;; mode-line-bell
    `(mode-line-bell-face ,(df-build-fgbg bg d-red))
 
-   ;; ---- After this line only new, validated stuff ----
+   ;; ---- Below this line, things that I haven't validated ----
 
    ;; Calendar
    `(holiday ,dark-forest-l-red)
@@ -311,10 +330,6 @@ into this file.)")
    `(bg:erc-color-face14 ,(df-build-bg dim-gray))
    `(bg:erc-color-face15 ,(df-build-bg gray))
 
-   ;; Flyspell colors
-   `(flyspell-duplicate ,(df-build-fg d-yellow ':weight 'bold))
-   `(flyspell-incorrect ,(df-build-fg d-red ':weight 'bold))
-
    ;; font lock
    `(font-lock-builtin-face ,dark-forest-l-blue)
    `(font-lock-comment-face ,dark-forest-dim-gray)
@@ -395,6 +410,9 @@ into this file.)")
    `(org-agenda-done ,(df-build-fg l-green ':weight 'bold))
    `(org-table ,(df-build-fg l-blue))
    `(org-code ,(df-build-fg gray-80))
+
+   ;; replace.el
+   '(match ((t (:background "RoyalBlue3"))))
 ))
 
 (provide-theme 'dark-forest)
