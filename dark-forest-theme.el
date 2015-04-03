@@ -156,6 +156,31 @@ into this file.)")
    `(apropos-symbol ,(df-build-fg fg-white))
    `(apropos-keybinding ,(df-build-fg gray-80 ':inherit 'underline))
 
+   ;; cus-edit.el (Faces for Customize)
+   `(custom-invalid ,(df-build-fg d-red))
+   `(custom-rogue ,dark-forest-l-red)
+   `(custom-modified ,dark-forest-l-blue)
+   `(custom-set ,(df-build-fgbg d-blue bg-3))
+   `(custom-changed ,(df-build-fgbg bg-3 d-blue))
+   `(custom-themed ,(df-build-fgbg fg-white bg-blue))
+   `(custom-button
+     ,(df-build-fgbg black gray-60
+                     ':box '(:line-width 2 :style released-button)))
+   `(custom-button-moude
+     ,(df-build-fgbg black gray-80
+                     ':box '(:line-width 2 :style released-button)))
+   `(custom-button-pressed
+     ,(df-build-fgbg black gray-60
+                     ':box '(:line-width 2 :style pressed-button)))
+   `(custom-state ,(df-build-fg m-green))
+   `(custom-comment ,(df-build-fgbg fg bg-2))
+   `(custom-comment-tag ,(df-build-fg fg-white))
+   `(custom-variable-tag ,dark-forest-l-blue)
+   `(custom-group-tag-1 ,(df-build-fg m-red ':weight 'bold
+                                    ':height '1.2 ':inherit 'variable-pitch))
+   `(custom-group-tag ,(df-build-fg m-blue ':weight 'bold
+                                    ':height '1.2 ':inherit 'variable-pitch))
+
    ;; faces.el
    `(default ,(df-build-fgbg fg bg ':weight 'normal ':width 'normal))
    `(shadow ,(df-build-fg gray))
@@ -229,6 +254,12 @@ into this file.)")
    ;; mode-line-bell
    `(mode-line-bell-face ,(df-build-fgbg bg d-red))
 
+   ;; wid-edit.el (Widget definitions)
+   `(widget-documentation ,(df-build-fg l-green))
+   `(widget-field ,(df-build-fgbg fg bg-2))
+   `(widget-single-line-field ,(df-build-fgbg fg bg-2))
+   `(widget-button-pressed ,(df-build-fg d-red))
+
    ;; ---- Below this line, things that I haven't validated ----
 
    ;; Calendar
@@ -249,17 +280,6 @@ into this file.)")
    `(compilation-column-number ,dark-forest-sl-orange)
    `(compilation-error ,dark-forest-m-red)
    `(compilation-warning ,(df-build-fg d-yellow))
-
-   ;; Custom mode
-   `(custom-invalid ,dark-forest-l-red)
-   `(custom-group-tag ,dark-forest-m-blue)
-   `(custom-state ,dark-forest-m-green)
-   `(custom-variable-tag ,dark-forest-l-blue)
-   `(custom-comment-tag ,dark-forest-gray)
-   `(custom-button ,(df-build-bg gray-80))
-   `(custom-button-mouse  ,(df-build-bg fg-white))
-   ;; TODO(erg): Theoretically there are other faces in this group, but I can't
-   ;; see them ever used. :-/
 
    ;; Diff mode
    `(diff-header ,(df-build-fgbg fg bg-2))
