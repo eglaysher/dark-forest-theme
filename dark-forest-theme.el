@@ -251,9 +251,6 @@ into this file.)")
    `(gn-embedded-variable ,(df-build-fg sl-orange))
    `(gn-embedded-variable-boundary ,(df-build-fg l-orange ':weight 'bold))
 
-   ;; mode-line-bell
-   `(mode-line-bell-face ,(df-build-fgbg bg d-red))
-
    ;; wid-edit.el (Widget definitions)
    `(widget-documentation ,(df-build-fg l-green))
    `(widget-field ,(df-build-fgbg fg bg-2))
@@ -434,5 +431,9 @@ into this file.)")
    ;; replace.el
    '(match ((t (:background "RoyalBlue3"))))
 ))
+
+(custom-theme-set-variables
+ 'dark-forest
+ '(echo-bell-background "#BFFF4CCC4CCC"))
 
 (provide-theme 'dark-forest)
