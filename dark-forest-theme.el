@@ -268,6 +268,20 @@ into this file.)")
    `(comint-highlight-input ,dark-forest-fg-white)
    `(comint-highlight-prompt ,dark-forest-l-cyan)
 
+   ;; company.el
+   `(company-tooltip ,(df-build-fgbg black gray-80))
+   `(company-tooltip-selection ,(df-build-fgbg fg-white d-blue))
+   ;; search
+   ;; mouse
+   `(company-tooltip-common ,(df-build-fgbg gray-30 gray-80))
+   `(company-tooltip-common-selection ,(df-build-fgbg gray-80 d-blue))
+   ;; more
+   `(company-scrollbar-fg ,(df-build-bg dim-gray))
+   `(company-scrollbar-bg ,(df-build-bg bg-2))
+   `(company-preview ,(df-build-fg gray-60 ':underline 't))
+   `(company-preview-common ,(df-build-fg gray-60 ':underline 't))
+   ;; more
+
    ;; Compilation (TODO: Make the mode line use dd-red once it exists.)
    `(compilation-info ,(df-build-fg m-green ':weight 'normal))
    `(compilation-mode-line-fail ,(df-build-fg d-red ':weight 'bold))
