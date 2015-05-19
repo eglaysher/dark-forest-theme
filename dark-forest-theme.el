@@ -257,6 +257,10 @@ into this file.)")
    `(widget-single-line-field ,(df-build-fgbg fg bg-2))
    `(widget-button-pressed ,(df-build-fg d-red))
 
+   ;; yasnippet.el
+   `(yas-field-highlight-face
+     ,(df-build-bg bg-2 ':box '(:line-width -1 :color "grey40")))
+
    ;; ---- Below this line, things that I haven't validated ----
 
    ;; Calendar
