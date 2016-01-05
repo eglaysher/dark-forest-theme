@@ -76,6 +76,7 @@ into this file.)")
       (gray-45   ["#733272AE6FBE" "#767676" "brightblack"])
       (gray-40   ["#666665F06353" "#666666" "brightblack"])
       (gray-30   ["#4CCC4C744A7E" "#4e4e4e" "gray"])
+      (gray-25   ["#3FFF3FB63E14" "#404040" "gray"])
       (gray-20   ["#333332F831A9" "#333333" "gray"])
       (gray-15   ["#2666263A253F" "#262626" "gray"])
       (gray-10   ["#1999197C18D4" "#1a1a1a" "gray"])
@@ -255,6 +256,12 @@ into this file.)")
    `(gn-embedded-variable ,(df-build-fg sl-orange))
    `(gn-embedded-variable-boundary ,(df-build-fg l-orange ':weight 'bold))
 
+   ;; powerline.el
+   `(powerline-active1 ,(df-build-fgbg black gray-50))
+   `(powerline-active2 ,(df-build-fgbg black gray-40))
+   `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-25))
+   `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-20))
+
    ;; wid-edit.el (Widget definitions)
    `(widget-documentation ,(df-build-fg l-green))
    `(widget-field ,(df-build-fgbg fg bg-2))
@@ -432,12 +439,6 @@ into this file.)")
 
    ;; makefile
    `(makefile-space ,(df-build-bg m-red))
-
-   ;; powerline
-   `(powerline-active1 ,(df-build-fgbg black gray-50))
-   `(powerline-active2 ,(df-build-fgbg black gray-40))
-   `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-20))
-   `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-15))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
