@@ -72,9 +72,13 @@ into this file.)")
       (gray-80   ["#CCCCCBE0C6A7" "#c6c6c6" "gray"])
       (gray      ["#B332B264ADD2" "#b2b2b2" "gray"])
       (gray-60   ["#999998E894FD" "#9e9e9e" "white"])
-      (dim-gray  ["#733272AE6FBE" "#767676" "brightblack"])
+      (gray-50   ["#7FFF7F6C7C28" "#7f7f7f" "white"])
+      (gray-45   ["#733272AE6FBE" "#767676" "brightblack"])
+      (gray-40   ["#666665F06353" "#666666" "brightblack"])
       (gray-30   ["#4CCC4C744A7E" "#4e4e4e" "gray"])
+      (gray-20   ["#333332F831A9" "#333333" "gray"])
       (gray-15   ["#2666263A253F" "#262626" "gray"])
+      (gray-10   ["#1999197C18D4" "#1a1a1a" "gray"])
 
       ;; The super-superlight colors. (hsv shift -25, -5)
       (ssl-blue  ["#B603CE34E665" "#afd7d7" "blue"])
@@ -127,7 +131,7 @@ into this file.)")
       (dark-forest-fg-white (df-build-fg fg-white))
 
       (dark-forest-gray (df-build-fg gray))
-      (dark-forest-dim-gray (df-build-fg dim-gray))
+      (dark-forest-dim-gray (df-build-fg gray-45))
 
       (dark-forest-ssl-blue (df-build-fg ssl-blue))
 
@@ -280,7 +284,7 @@ into this file.)")
    `(company-tooltip-common ,(df-build-fgbg gray-30 gray-80))
    `(company-tooltip-common-selection ,(df-build-fgbg gray-80 d-blue))
    ;; more
-   `(company-scrollbar-fg ,(df-build-bg dim-gray))
+   `(company-scrollbar-fg ,(df-build-bg gray-45))
    `(company-scrollbar-bg ,(df-build-bg bg-2))
    `(company-preview ,(df-build-fg gray-60 ':underline 't))
    `(company-preview-common ,(df-build-fg gray-60 ':underline 't))
@@ -318,7 +322,7 @@ into this file.)")
    `(erc-header-line ,(df-build-fgbg fg-white bg-2))
    `(erc-input-face ,(df-build-fg fg-white ':weight 'normal))
    `(erc-prompt-face ,(df-build-fgbg bg m-blue))
-   `(erc-notice-face ,(df-build-fg dim-gray ':weight 'normal))
+   `(erc-notice-face ,(df-build-fg gray-45 ':weight 'normal))
    `(erc-my-nick-face ,dark-forest-l-red)
    `(erc-nick-default-face ,(df-build-fg sl-blue ':weight 'normal))
    `(erc-nick-msg-face ,(df-build-fg d-red))
@@ -362,7 +366,7 @@ into this file.)")
    `(bg:erc-color-face11 ,(df-build-bg m-cyan))
    `(bg:erc-color-face12 ,(df-build-bg m-blue))
    `(bg:erc-color-face13 ,(df-build-bg m-violet))
-   `(bg:erc-color-face14 ,(df-build-bg dim-gray))
+   `(bg:erc-color-face14 ,(df-build-bg gray-45))
    `(bg:erc-color-face15 ,(df-build-bg gray))
 
    ;; font lock
@@ -428,6 +432,12 @@ into this file.)")
 
    ;; makefile
    `(makefile-space ,(df-build-bg m-red))
+
+   ;; powerline
+   `(powerline-active1 ,(df-build-fgbg black gray-50))
+   `(powerline-active2 ,(df-build-fgbg black gray-40))
+   `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-20))
+   `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-15))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
