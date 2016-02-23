@@ -161,6 +161,25 @@ into this file.)")
    `(apropos-symbol ,(df-build-fg fg-white))
    `(apropos-keybinding ,(df-build-fg gray-80 ':inherit 'underline))
 
+   ;; calendar.el
+   `(holiday ,dark-forest-l-red)
+   `(calendar-today ,dark-forest-l-green)
+   `(diary ,dark-forest-l-blue)
+
+   ;; comint.el
+   `(comint-highlight-input ,dark-forest-fg-white)
+   `(comint-highlight-prompt ,dark-forest-l-cyan)
+
+   ;; compile.el
+   `(compilation-error ,dark-forest-m-red)
+   `(compilation-warning ,(df-build-fg d-yellow))
+   `(compilation-info ,(df-build-fg m-green ':weight 'normal))
+   `(compilation-mode-line-fail ,(df-build-fg d-red ':weight 'bold))
+   `(compilation-mode-line-run ,(df-build-fg d-yellow))
+   `(compilation-mode-line-exit ,(df-build-fg d-green ':weight 'bold))
+   `(compilation-line-number ,dark-forest-sl-blue)
+   `(compilation-column-number ,dark-forest-sl-orange)
+
    ;; cus-edit.el (Faces for Customize)
    `(custom-invalid ,(df-build-fg d-red))
    `(custom-rogue ,dark-forest-l-red)
@@ -256,6 +275,21 @@ into this file.)")
    `(gn-embedded-variable ,(df-build-fg sl-orange))
    `(gn-embedded-variable-boundary ,(df-build-fg l-orange ':weight 'bold))
 
+   ;; ido.el
+   `(ido-first-match ,(df-build-fg m-yellow ':weight 'bold))
+   `(ido-only-match ,dark-forest-m-green)
+   `(ido-subdir ,dark-forest-l-blue)
+   `(ido-indicator ,(df-build-fgbg m-yellow d-red ':width 'condensed))
+
+   ;; isearch.el
+   `(isearch ,(df-build-fgbg bg-red l-red))
+   `(isearch-fail ,(df-build-bg bg-red))
+   `(lazy-highlight ,(df-build-bg bg-blue))
+
+   ;; make-mode.el
+   `(makefile-space ,(df-build-bg m-red))
+   `(makefile-makepp-perl ,(df-build-bg d-blue))
+
    ;; powerline.el
    `(powerline-active1 ,(df-build-fgbg black gray-50))
    `(powerline-active2 ,(df-build-fgbg black gray-40))
@@ -274,15 +308,6 @@ into this file.)")
 
    ;; ---- Below this line, things that I haven't validated ----
 
-   ;; Calendar
-   `(holiday ,dark-forest-l-red)
-   `(calendar-today ,dark-forest-l-green)
-   `(diary ,dark-forest-l-blue)
-
-   ;; Comint
-   `(comint-highlight-input ,dark-forest-fg-white)
-   `(comint-highlight-prompt ,dark-forest-l-cyan)
-
    ;; company.el
    `(company-tooltip ,(df-build-fgbg black gray-80))
    `(company-tooltip-selection ,(df-build-fgbg fg-white d-blue))
@@ -296,16 +321,6 @@ into this file.)")
    `(company-preview ,(df-build-fg gray-60 ':underline 't))
    `(company-preview-common ,(df-build-fg gray-60 ':underline 't))
    ;; more
-
-   ;; Compilation (TODO: Make the mode line use dd-red once it exists.)
-   `(compilation-info ,(df-build-fg m-green ':weight 'normal))
-   `(compilation-mode-line-fail ,(df-build-fg d-red ':weight 'bold))
-   `(compilation-mode-line-run ,(df-build-fg d-yellow))
-   `(compilation-mode-line-exit ,(df-build-fg d-green ':weight 'bold))
-   `(compilation-line-number ,dark-forest-sl-blue)
-   `(compilation-column-number ,dark-forest-sl-orange)
-   `(compilation-error ,dark-forest-m-red)
-   `(compilation-warning ,(df-build-fg d-yellow))
 
    ;; Diff mode
    `(diff-header ,(df-build-fgbg fg bg-2))
@@ -394,12 +409,6 @@ into this file.)")
    `(font-lock-warning-face
      ,(df-build-fg l-red ':weight 'bold ':inherit 'error))
 
-   ;; ido
-   `(ido-first-match ,(df-build-fg m-yellow ':weight 'bold))
-   `(ido-only-match ,dark-forest-m-green)
-   `(ido-subdir ,dark-forest-l-blue)
-   `(ido-indicator ,(df-build-fgbg m-yellow d-red ':width 'condensed))
-
    ;; info
    `(info-title-1 ,dark-forest-fg-white)
    `(info-title-2 ,dark-forest-gray)
@@ -407,11 +416,6 @@ into this file.)")
    `(info-header-node ,dark-forest-fg-white)
    `(info-menu-header ,dark-forest-gray)
    `(info-menu-star ,dark-forest-m-red)
-
-   ;; isearch
-   `(isearch ,(df-build-fgbg bg-red l-red))
-   `(isearch-fail ,(df-build-bg bg-red))
-   `(lazy-highlight ,(df-build-bg bg-blue))
 
    ;; magit.el (Incomplete; revist after using more)
    `(magit-branch ,(df-build-fg sl-blue))
@@ -437,9 +441,6 @@ into this file.)")
    `(magit-process-ok ,(df-build-fg m-green ':inherit 'magit-section-title))
    `(magit-process-ng ,(df-build-fg m-red ':inherit 'magit-section-title))
 
-   ;; makefile
-   `(makefile-space ,(df-build-bg m-red))
-
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
    `(org-special-keyword ,dark-forest-l-yellow)
@@ -456,6 +457,8 @@ into this file.)")
    `(org-agenda-done ,(df-build-fg l-green ':weight 'bold))
    `(org-table ,(df-build-fg l-blue))
    `(org-code ,(df-build-fg gray-80))
+
+   ;; TODO: smerge-mode.el.
 
    ;; replace.el
    '(match ((t (:background "RoyalBlue3"))))
