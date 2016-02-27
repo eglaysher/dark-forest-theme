@@ -464,8 +464,53 @@ into this file.)")
    '(match ((t (:background "RoyalBlue3"))))
 ))
 
+;; TODO(erg): Figure out variables here.
 (custom-theme-set-variables
  'dark-forest
- '(echo-bell-background "#BFFF4CCC4CCC"))
+ '(echo-bell-background "#BFFF4CCC4CCC")
+
+ ;; Currently experimenting with this until it looks good. Currently, s=45,
+ ;; v=93, and the hue is in the comment to the right.
+ `(vc-annotate-color-map
+   '((  0 . "#EE1382F182F1") ;; 0
+     ( 10 . "#EE138E8C82F1") ;; 6.5
+     ( 20 . "#EE139A2782F1") ;; 13.0
+     ( 30 . "#EE13A5C282F1") ;; 19.5
+     ( 40 . "#EE13B15D82F1") ;; 26.0
+     ( 50 . "#EE13BCF982F1") ;; 32.5
+     ( 60 . "#EE13C89482F1") ;; 39.0
+     ( 70 . "#EE13D42F82F1") ;; 45.5
+     ( 80 . "#EE13DFCA82F1") ;; 52.0
+     ( 90 . "#EE13EB6582F1") ;; 58.5
+     (100 . "#E526EE1382F1") ;; 65.0
+     (110 . "#D98AEE1382F1") ;; 71.5
+     (120 . "#CDEFEE1382F1") ;; 78.0
+     (130 . "#C254EE1382F1") ;; 84.5
+     (140 . "#B6B9EE1382F1") ;; 91.0
+     (150 . "#AB1EEE1382F1") ;; 97.5
+     (160 . "#9F82EE1382F1") ;; 104.0
+     (170 . "#93E7EE1382F1") ;; 110.5
+     (180 . "#884CEE1382F1") ;; 117.0
+     (190 . "#82F1EE138931") ;; 123.5
+     (200 . "#82F1EE1394CC") ;; 130.0
+     (210 . "#82F1EE13A067") ;; 136.5
+     (220 . "#82F1EE13AC02") ;; 143.0
+     (230 . "#82F1EE13B79D") ;; 149.5
+     (240 . "#82F1EE13C338") ;; 156.0
+     (250 . "#82F1EE13CED4") ;; 162.5
+     (260 . "#82F1EE13DA6F") ;; 169.0
+     (270 . "#82F1EE13E60A") ;; 175.5
+     (280 . "#82F1EA81EE13") ;; 182.0
+     (290 . "#82F1DEE6EE13") ;; 188.5
+     (300 . "#82F1D34AEE13") ;; 195.0
+     (310 . "#82F1C7AFEE13") ;; 201.5
+     (320 . "#82F1BC14EE13") ;; 208.0
+     (330 . "#82F1B079EE13") ;; 214.5
+     (340 . "#82F1A4DEEE13") ;; 221.0
+     (350 . "#82F19942EE13") ;; 227.5
+     (360 . "#82F18DA7EE13"))) ;; 234.0
+ '(vc-annotate-background "#1a1a1a") ; bg
+ )
+
 
 (provide-theme 'dark-forest)
