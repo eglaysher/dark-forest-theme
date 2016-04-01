@@ -123,9 +123,23 @@ into this file.)")
       ;; be bg.
       (black     ["#000000" "#000000" "#000000"])
 
-      ;; TODO: These are unjustifiable. Maybe a dd-red and a dd-blue?
-      (bg-red    ["#660000" "#5f0000" "red"])               ; 0/100/40
-      (bg-blue   ["#3D4F66" "#5f87af" "blue"])              ; 214/40/40
+      ;; Highlight backgrounds. For small areas. (20, -50)
+      (bg-hl-red    ["#666623D623D6" "black" "black"])
+      (bg-hl-orange ["#7FFF3DF323D6" "black" "black"])
+      (bg-hl-yellow ["#6E1463582687" "black" "black"])
+      (bg-hl-green  ["#32617AE03261" "black" "black"])
+      (bg-hl-cyan   ["#147A66666666" "black" "black"])
+      (bg-hl-blue   ["#272A4D2E7332" "black" "black"])
+      (bg-hl-violet ["#503623D66666" "black" "black"])
+
+      ;; Dark backgrounds. For large areas. (10, -60)
+      (bg-d-red     ["#4CCC228F228F" "black" "black"])
+      (bg-d-orange  ["#666638E626E9" "black" "black"])
+      (bg-d-yellow  ["#547A4D822603" "black" "black"])
+      (bg-d-green   ["#319C6147319C" "black" "black"])
+      (bg-d-cyan    ["#170A4CCC4CCC" "black" "black"])
+      (bg-d-blue    ["#276C40825999" "black" "black"])
+      (bg-d-violet  ["#3EB8228F4CCC" "black" "black"])
 
       ;; Final color lists. If at all possible, use these properties instead of
       ;; including raw colors per above.
@@ -186,7 +200,7 @@ into this file.)")
    `(custom-modified ,dark-forest-l-blue)
    `(custom-set ,(df-build-fgbg d-blue bg-3))
    `(custom-changed ,(df-build-fgbg bg-3 d-blue))
-   `(custom-themed ,(df-build-fgbg fg-white bg-blue))
+   `(custom-themed ,(df-build-fgbg fg-white bg-hl-blue))
    `(custom-button
      ,(df-build-fgbg black gray-60
                      ':box '(:line-width 2 :style released-button)))
@@ -292,9 +306,9 @@ into this file.)")
    `(ido-indicator ,(df-build-fgbg m-yellow d-red ':width 'condensed))
 
    ;; isearch.el
-   `(isearch ,(df-build-fgbg bg-red l-red))
-   `(isearch-fail ,(df-build-bg bg-red))
-   `(lazy-highlight ,(df-build-bg bg-blue))
+   `(isearch ,(df-build-fgbg bg-hl-red l-red))
+   `(isearch-fail ,(df-build-bg bg-hl-red))
+   `(lazy-highlight ,(df-build-bg bg-hl-blue))
 
    ;; make-mode.el
    `(makefile-space ,(df-build-bg m-red))
@@ -305,6 +319,14 @@ into this file.)")
    `(powerline-active2 ,(df-build-fgbg black gray-40))
    `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-25))
    `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-20))
+
+   ;; smerge-mode.el
+   `(smerge-mine ,(df-build-bg bg-d-red))
+   `(smerge-other ,(df-build-bg bg-d-green))
+   `(smerge-base ,(df-build-fgbg bg bg-d-yellow))
+   `(smerge-markers ((t (:inherit diff-function))))
+   `(smerge-refined-removed ,(df-build-bg bg-hl-red))
+   `(smerge-refined-added ,(df-build-bg bg-hl-green))
 
    ;; wid-edit.el (Widget definitions)
    `(widget-documentation ,(df-build-fg l-green))
@@ -457,8 +479,6 @@ into this file.)")
    `(org-agenda-done ,(df-build-fg l-green ':weight 'bold))
    `(org-table ,(df-build-fg l-blue))
    `(org-code ,(df-build-fg gray-80))
-
-   ;; TODO: smerge-mode.el.
 
    ;; replace.el
    '(match ((t (:background "RoyalBlue3"))))
