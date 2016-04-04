@@ -184,6 +184,19 @@ into this file.)")
    `(comint-highlight-input ,dark-forest-fg-white)
    `(comint-highlight-prompt ,dark-forest-l-cyan)
 
+   ;; company.el
+   `(company-tooltip ,(df-build-fgbg black gray-80))
+   `(company-tooltip-selection ,(df-build-fgbg fg-white d-blue))
+   `(company-tooltip-common ,(df-build-fgbg gray-30 gray-80))
+   `(company-tooltip-common-selection ,(df-build-fgbg gray-80 d-blue))
+   `(company-tooltip-annotation ,(df-build-fgbg d-red gray-80))
+   `(company-tooltip-annotation-selection ,(df-build-fgbg bg-d-red d-blue))
+   `(company-scrollbar-fg ,(df-build-bg gray-45))
+   `(company-scrollbar-bg ,(df-build-bg bg-2))
+   `(company-preview ,(df-build-fg gray-60 ':underline 't))
+   `(company-preview-common ,(df-build-fg gray-60 ':underline 't))
+   `(company-echo-common ,(df-build-bg bg-d-red))
+
    ;; compile.el
    `(compilation-error ,dark-forest-m-red)
    `(compilation-warning ,(df-build-fg d-yellow))
@@ -342,20 +355,6 @@ into this file.)")
      ,(df-build-bg bg-2 ':box '(:line-width -1 :color "grey40")))
 
    ;; ---- Below this line, things that I haven't validated ----
-
-   ;; company.el
-   `(company-tooltip ,(df-build-fgbg black gray-80))
-   `(company-tooltip-selection ,(df-build-fgbg fg-white d-blue))
-   ;; search
-   ;; mouse
-   `(company-tooltip-common ,(df-build-fgbg gray-30 gray-80))
-   `(company-tooltip-common-selection ,(df-build-fgbg gray-80 d-blue))
-   ;; more
-   `(company-scrollbar-fg ,(df-build-bg gray-45))
-   `(company-scrollbar-bg ,(df-build-bg bg-2))
-   `(company-preview ,(df-build-fg gray-60 ':underline 't))
-   `(company-preview-common ,(df-build-fg gray-60 ':underline 't))
-   ;; more
 
    ;; EMMS
    `(emms-stream-name ,(df-build-fg b-yellow ':weight 'normal))
