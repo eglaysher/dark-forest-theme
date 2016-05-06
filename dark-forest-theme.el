@@ -320,6 +320,9 @@ into this file.)")
    `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-25))
    `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-20))
 
+   ;; replace.el    (but mainly used in occur.el)
+   `(match ,(df-build-fgbg fg-white bg-hl-blue))
+
    ;; smerge-mode.el
    `(smerge-mine ,(df-build-bg bg-d-red))
    `(smerge-other ,(df-build-bg bg-d-green))
@@ -479,9 +482,6 @@ into this file.)")
    `(org-agenda-done ,(df-build-fg l-green ':weight 'bold))
    `(org-table ,(df-build-fg l-blue))
    `(org-code ,(df-build-fg gray-80))
-
-   ;; replace.el
-   '(match ((t (:background "RoyalBlue3"))))
 ))
 
 ;; TODO(erg): Figure out variables here.
