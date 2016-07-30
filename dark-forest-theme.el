@@ -254,10 +254,13 @@ into this file.)")
    `(escape-glyph ,dark-forest-l-cyan)
    `(mode-line ,(df-build-fgbg black gray-60
                                ':box '(:line-width -1 :style released-button)))
+   `(mode-line-buffer-id ,(df-build-fgbg black gray-60 ':weight 'bold
+                                         ':inherit 'mode-line))
    `(mode-line-inactive ,(df-build-fgbg gray-80 gray-30
                                         ':box '(:line-width -1 :color "grey40")
                                         ':weight 'light))
-   '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
+   '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40"
+                                                :style released-button)))))
    `(header-line ,(df-build-fgbg fg-white bg-2 ':inherit 'mode-line ':box 'nil))
    `(minibuffer-prompt ,dark-forest-l-cyan)
    `(fringe ,(df-build-bg gray-15))
@@ -328,10 +331,15 @@ into this file.)")
    `(makefile-makepp-perl ,(df-build-bg d-blue))
 
    ;; powerline.el
-   `(powerline-active1 ,(df-build-fgbg black gray-50))
-   `(powerline-active2 ,(df-build-fgbg black gray-40))
-   `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-25))
-   `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-20))
+   `(mode-line-buffer-id-inactive ,(df-build-fgbg gray-80 gray-30
+                                                  ':weight 'bold
+                                                  ':inherit 'mode-line-inactive))
+   `(powerline-active1 ,(df-build-fgbg black gray-50 ':inherit 'mode-line))
+   `(powerline-active2 ,(df-build-fgbg black gray-40 ':inherit 'mode-line))
+   `(powerline-inactive1 ,(df-build-fgbg gray-80 gray-25
+                                         ':inherit 'mode-line-inactive))
+   `(powerline-inactive2 ,(df-build-fgbg gray-80 gray-20
+                                         ':inherit 'mode-line-inactive))
 
    ;; replace.el    (but mainly used in occur.el)
    `(match ,(df-build-fgbg fg-white bg-hl-blue))
