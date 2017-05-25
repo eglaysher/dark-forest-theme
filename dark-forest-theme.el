@@ -352,6 +352,16 @@ into this file.)")
    `(smerge-refined-removed ,(df-build-bg bg-hl-red))
    `(smerge-refined-added ,(df-build-bg bg-hl-green))
 
+   ;; term.el
+   `(term-color-black ,(df-build-fgbg bg bg))
+   `(term-color-red ,(df-build-fgbg d-red d-red))
+   `(term-color-green ,(df-build-fgbg d-green d-green))
+   `(term-color-yellow ,(df-build-fgbg d-yellow d-yellow))
+   `(term-color-blue ,(df-build-fgbg d-blue d-blue))
+   `(term-color-magenta ,(df-build-fgbg d-violet d-violet))
+   `(term-color-cyan ,(df-build-fgbg d-cyan d-cyan))
+   `(term-color-white ,(df-build-fgbg fg-white fg-white))
+
    ;; wid-edit.el (Widget definitions)
    `(widget-documentation ,(df-build-fg l-green))
    `(widget-field ,(df-build-fgbg fg bg-2))
