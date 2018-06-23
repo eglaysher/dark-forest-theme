@@ -244,6 +244,7 @@ into this file.)")
 
    ;; faces.el
    `(default ,(df-build-fgbg fg bg ':weight 'normal ':width 'normal))
+   `(fixed-pitch ((t (:inherit default))))
    `(shadow ,(df-build-fg gray))
    `(link ,(df-build-fg m-cyan ':underline 't))
    `(link-visited ,(df-build-fg m-violet ':inherit 'link))
@@ -482,6 +483,10 @@ into this file.)")
    ;; TODO: reflog
    `(magit-process-ok ,(df-build-fg m-green ':inherit 'magit-section-title))
    `(magit-process-ng ,(df-build-fg m-red ':inherit 'magit-section-title))
+
+   ;; markdown.el
+   `(markdown-inline-code-face ((t (:inherit font-lock-constant-face))))
+   `(markdown-code-face ((t (:inherit font-lock-constant-face))))
 
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
