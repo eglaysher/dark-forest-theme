@@ -247,7 +247,7 @@ into this file.)")
    `(shadow ,(df-build-fg gray))
    `(link ,(df-build-fg m-cyan ':underline 't))
    `(link-visited ,(df-build-fg m-violet ':inherit 'link))
-   '(highlight ((t (:weight bold :underline t))))
+   `(highlight ,(df-build-bg bg-2)) ;; ((t (:weight bold :underline t))))
    `(region ,(df-build-bg bg-3))
    `(secondary-selection ,(df-build-bg bg-2))
    `(trailing-whitespace ,(df-build-bg m-red))
@@ -325,6 +325,9 @@ into this file.)")
    `(isearch ,(df-build-fgbg bg-hl-red l-red))
    `(isearch-fail ,(df-build-bg bg-hl-red))
    `(lazy-highlight ,(df-build-bg bg-hl-blue))
+
+   ;; linum.el
+   `(linum ,(df-build-fgbg gray bg-2))
 
    ;; make-mode.el
    `(makefile-space ,(df-build-bg m-red))
@@ -483,6 +486,12 @@ into this file.)")
    `(magit-process-ok ,(df-build-fg m-green ':inherit 'magit-section-title))
    `(magit-process-ng ,(df-build-fg m-red ':inherit 'magit-section-title))
 
+   ;; markdown.el (Quick hacks to fix egregious thing)
+   `(markdown-inline-code-face ((t (:inherit font-lock-constant-face))))
+
+   ;; whitespace.el (Quick hack for today)
+   `(whitespace-line ,(df-build-fg m-violet))
+   
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
    `(org-special-keyword ,dark-forest-l-yellow)
