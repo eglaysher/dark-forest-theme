@@ -244,6 +244,7 @@ into this file.)")
 
    ;; faces.el
    `(default ,(df-build-fgbg fg bg ':weight 'normal ':width 'normal))
+   `(fixed-pitch ((t (:inherit default))))
    `(shadow ,(df-build-fg gray))
    `(link ,(df-build-fg m-cyan ':underline 't))
    `(link-visited ,(df-build-fg m-violet ':inherit 'link))
@@ -488,10 +489,11 @@ into this file.)")
 
    ;; markdown.el (Quick hacks to fix egregious thing)
    `(markdown-inline-code-face ((t (:inherit font-lock-constant-face))))
+   `(markdown-code-face ((t (:inherit font-lock-constant-face))))
 
    ;; whitespace.el (Quick hack for today)
    `(whitespace-line ,(df-build-fg m-violet))
-   
+
    ;; org-mode (WOEFULLY INCOMPLETE ON THE COLORING!)
    `(org-date ,(df-build-fg l-cyan ':underline 't))
    `(org-special-keyword ,dark-forest-l-yellow)
