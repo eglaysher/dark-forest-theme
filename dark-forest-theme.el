@@ -1,4 +1,4 @@
-;;; dark-forest-theme.el --- Amber on black theme    -*- lexical-binding: t; -*-
+;;; dark-forest-theme.el --- Amber on black theme
 
 ;; Copyright (C) 2011-2020  Elliot Glaysher
 
@@ -585,6 +585,14 @@ into this file.)")
      (360 . "#82F18DA7EE13"))) ;; 234.0
  '(vc-annotate-background "#1a1a1a") ; bg
  )
+
+;;;###autoload
+(and load-file-name
+     (boundp 'custom-theme-load-path)
+     ;; for melpa support
+     (add-to-list 'custom-theme-load-path
+                  (file-name-as-directory
+                   (file-name-directory load-file-name))))
 
 (provide-theme 'dark-forest)
 ;;; dark-forest-theme.el ends here
