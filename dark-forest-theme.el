@@ -595,4 +595,5 @@ into this file.)")
                    (file-name-directory load-file-name))))
 
 (provide-theme 'dark-forest)
+(provide 'dark-forest-theme)
 ;;; dark-forest-theme.el ends here
