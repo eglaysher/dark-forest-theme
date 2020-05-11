@@ -1,3 +1,29 @@
+;;; dark-forest-theme.el --- Amber on black theme    -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2011-2020  Elliot Glaysher
+
+;; Author: Elliot Glaysher <glaysher@umich.edu>
+;; Keywords: data
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; An amber on black theme. Personal.
+
+;;; Code:
+
 (deftheme dark-forest
   "An amber on black theme. A modification of the default light
 text on dark background font-lock colors, slightly modified, and
@@ -560,5 +586,5 @@ into this file.)")
  '(vc-annotate-background "#1a1a1a") ; bg
  )
 
-
 (provide-theme 'dark-forest)
+;;; dark-forest-theme.el ends here
