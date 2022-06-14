@@ -52,20 +52,16 @@ into this file.)")
   and creates truecolor, 256 safe and 16 color variants of a
   foreground."
   (let ((truecolor (append `(:foreground ,(elt color-tuple 0)) e))
-        (xterm256 (append `(:foreground ,(elt color-tuple 1)) e))
-        (simple (append `(:foreground ,(elt color-tuple 2)) e)))
+        (xterm256 (append `(:foreground ,(elt color-tuple 1)) e)))
     `((((class color) (min-colors 4096)) ,truecolor)
-      (((class color) (min-colors 256)) ,xterm256)
-      (t ,simple))))
+      (((class color) (min-colors 256)) ,xterm256))))
 
 (defun df-build-bg (color-tuple &rest e)
   "For Dark Forest theme. Like `df-build-fg', but for the background."
   (let ((truecolor (append `(:background ,(elt color-tuple 0)) e))
-        (xterm256 (append `(:background ,(elt color-tuple 1)) e))
-        (simple (append `(:background ,(elt color-tuple 2)) e)))
+        (xterm256 (append `(:background ,(elt color-tuple 1)) e)))
     `((((class color) (min-colors 4096)) ,truecolor)
-      (((class color) (min-colors 256)) ,xterm256)
-      (t ,simple))))
+      (((class color) (min-colors 256)) ,xterm256))))
 
 (defun df-build-fgbg (fg-tuple bg-tuple &rest e)
   "For Dark Forest theme. Like `df-build-fg', but takes tuples
@@ -73,99 +69,96 @@ into this file.)")
   (let ((truecolor (append `(:foreground ,(elt fg-tuple 0)
                              :background ,(elt bg-tuple 0)) e))
         (xterm256 (append `(:foreground ,(elt fg-tuple 1)
-                            :background ,(elt bg-tuple 1)) e))
-        (simple (append `(:foreground ,(elt fg-tuple 2)
-                          :background ,(elt bg-tuple 2)) e)))
+                            :background ,(elt bg-tuple 1)) e)))
     `((((class color) (min-colors 4096)) ,truecolor)
-      (((class color) (min-colors 256)) ,xterm256)
-      (t ,simple))))
+      (((class color) (min-colors 256)) ,xterm256))))
 
 
 ;; You might want to view this in rainbow-mode.
 (let* (
-      (fg        ["#EE13DE0182F1" "#ffd787" "brightwhite"])
-      (fg-white  ["#EE13ED01E6EF" "#eeeeee" "brightwhite"]) ; gray-93
+      (fg        ["#EE13DE0182F1" "#ffd787"])
+      (fg-white  ["#EE13ED01E6EF" "#eeeeee"]) ; gray-93
 
       ;; "Black" background colors. Our "gray" has the slightest hint of amber
       ;; tint, but this is pure black/gray. These colors are slightly adjusted
       ;; on the xterm256 from the hsv values on the right.
-      (bg        ["#1a1a1a" "#1c1c1c" "black"])             ; 0/0/10
-      (bg-2      ["#333333" "#303030" "black"])             ; 0/0/20
-      (bg-3      ["#4D4D4D" "#4e4e4e" "brightblack"])       ; 0/0/30
+      (bg        ["#1a1a1a" "#1c1c1c"])             ; 0/0/10
+      (bg-2      ["#333333" "#303030"])             ; 0/0/20
+      (bg-3      ["#4D4D4D" "#4e4e4e"])       ; 0/0/30
 
       ;; Our grays on truecolor have a subtle tint of amber in them. (hue=51,
       ;; sat=3) Otherwise, we fall back to the closest 256 safe gray.
-      (gray-80   ["#CCCCCBE0C6A7" "#c6c6c6" "gray"])
-      (gray      ["#B332B264ADD2" "#b2b2b2" "gray"])
-      (gray-60   ["#999998E894FD" "#9e9e9e" "white"])
-      (gray-50   ["#7FFF7F6C7C28" "#7f7f7f" "white"])
-      (gray-45   ["#733272AE6FBE" "#767676" "brightblack"])
-      (gray-40   ["#666665F06353" "#666666" "brightblack"])
-      (gray-30   ["#4CCC4C744A7E" "#4e4e4e" "gray"])
-      (gray-25   ["#3FFF3FB63E14" "#3a3a3a" "gray"])
-      (gray-20   ["#333332F831A9" "#303030" "gray"])
-      (gray-15   ["#2666263A253F" "#262626" "gray"])
-      (gray-10   ["#1999197C18D4" "#1c1c1c" "gray"])
+      (gray-80   ["#CCCCCBE0C6A7" "#c6c6c6"])
+      (gray      ["#B332B264ADD2" "#b2b2b2"])
+      (gray-60   ["#999998E894FD" "#9e9e9e"])
+      (gray-50   ["#7FFF7F6C7C28" "#7f7f7f"])
+      (gray-45   ["#733272AE6FBE" "#767676"])
+      (gray-40   ["#666665F06353" "#666666"])
+      (gray-30   ["#4CCC4C744A7E" "#4e4e4e"])
+      (gray-25   ["#3FFF3FB63E14" "#3a3a3a"])
+      (gray-20   ["#333332F831A9" "#303030"])
+      (gray-15   ["#2666263A253F" "#262626"])
+      (gray-10   ["#1999197C18D4" "#1c1c1c"])
 
       ;; The super-superlight colors. (hsv shift -25, -5)
-      (ssl-blue  ["#B603CE34E665" "#afd7d7" "blue"])
+      (ssl-blue  ["#B603CE34E665" "#afd7d7"])
 
       ;; The superlight colors. (hsv shift -15, 5)
-      (sl-blue   ["#B0A3D851FFFF" "#afd7ff" "blue"])
-      (sl-orange ["#FFFFBC1DA147" "#ffd7d7" "orange"])
+      (sl-blue   ["#B0A3D851FFFF" "#afd7ff"])
+      (sl-orange ["#FFFFBC1DA147" "#ffd7d7"])
 
       ;; The light set of colors. (hsv shift -5, 5)
-      (l-red     ["#F33291EA91EA" "#ffafaf" "brightred"])
-      (l-orange  ["#FFFFA9C487AD" "#ffd7af" "brightyellow"])
-      (l-yellow  ["#FAE0EBD29686" "#ffffaf" "brightyellow"])
-      (l-green   ["#A8F5FFFFA8F5" "#afffaf" "brightgreen"])
-      (l-cyan    ["#6D70F332F332" "#5fffff" "brightcyan"])
-      (l-blue    ["#9709CB84FFFF" "#87afff" "brightblue"])
+      (l-red     ["#F33291EA91EA" "#ffafaf"])
+      (l-orange  ["#FFFFA9C487AD" "#ffd7af"])
+      (l-yellow  ["#FAE0EBD29686" "#ffffaf"])
+      (l-green   ["#A8F5FFFFA8F5" "#afffaf"])
+      (l-cyan    ["#6D70F332F332" "#5fffff"])
+      (l-blue    ["#9709CB84FFFF" "#87afff"])
 
       ;; "Medium" colors. (hsv shift 0, 0)
-      (m-red     ["#E6657EB77EB7" "#ff8787" "brightred"])
-      (m-orange  ["#FFFFA0987AE0" "#ffaf87" "brightyellow"])
-      (m-yellow  ["#EE13DE0182F1" "#ffff87" "brightyellow"])
-      (m-green   ["#9908FAE09908" "#87ff87" "brightgreen"])
-      (m-cyan    ["#5C28E665E665" "#5fd7d7" "brightcyan"])
-      (m-blue    ["#8353BB42F332" "#87afff" "brightblue"])
-      (m-violet  ["#C3D67EB7E665" "#d787d7" "birghtmagenta"])
+      (m-red     ["#E6657EB77EB7" "#ff8787"])
+      (m-orange  ["#FFFFA0987AE0" "#ffaf87"])
+      (m-yellow  ["#EE13DE0182F1" "#ffff87"])
+      (m-green   ["#9908FAE09908" "#87ff87"])
+      (m-cyan    ["#5C28E665E665" "#5fd7d7"])
+      (m-blue    ["#8353BB42F332" "#87afff"])
+      (m-violet  ["#C3D67EB7E665" "#d787d7"])
 
       ;; Bolder colors. (hsv shift 20, 10)
-      (b-yellow  ["#FFFFE7095999" "#ffff5f" "yellow"])
+      (b-yellow  ["#FFFFE7095999" "#ffff5f"])
 
       ;; "Dark" colors, which have saturation 55 and value of 80. Mainly used
       ;; for flyspell checking. Significantly darker than any of the
       ;; above. (hsv shift 15, -15)
-      (d-red     ["#BFFF4CCC4CCC" "#af5f5f" "red"])
-      (d-orange  ["#D998711D47CE" "#d7875f" "orange"])
-      (d-yellow  ["#C7ADB5B44FDE" "#d7af5f" "yellow"])
-      (d-green   ["#61BDD47A61BD" "#5fd75f" "green"])
-      (d-cyan    ["#2FFFBFFFBFFF" "#00afaf" "cyan"])
-      (d-blue    ["#4FDE8E55CCCC" "#5f87d7" "blue"])
-      (d-violet  ["#99994CCCBFFF" "#875faf" "violet"])
+      (d-red     ["#BFFF4CCC4CCC" "#af5f5f"])
+      (d-orange  ["#D998711D47CE" "#d7875f"])
+      (d-yellow  ["#C7ADB5B44FDE" "#d7af5f"])
+      (d-green   ["#61BDD47A61BD" "#5fd75f"])
+      (d-cyan    ["#2FFFBFFFBFFF" "#00afaf"])
+      (d-blue    ["#4FDE8E55CCCC" "#5f87d7"])
+      (d-violet  ["#99994CCCBFFF" "#875faf"])
 
       ;; Temporary black tuple until I figure out what's black and what should
       ;; be bg.
-      (black     ["#000000" "#000000" "#000000"])
+      (black     ["#000000" "#000000"])
 
       ;; Highlight backgrounds. For small areas. (20, -50)
-      (bg-hl-red    ["#666623D623D6" "black" "black"])
-      (bg-hl-orange ["#7FFF3DF323D6" "black" "black"])
-      (bg-hl-yellow ["#6E1463582687" "black" "black"])
-      (bg-hl-green  ["#32617AE03261" "black" "black"])
-      (bg-hl-cyan   ["#147A66666666" "black" "black"])
-      (bg-hl-blue   ["#272A4D2E7332" "black" "black"])
-      (bg-hl-violet ["#503623D66666" "black" "black"])
+      (bg-hl-red    ["#666623D623D6" "#000000"])
+      (bg-hl-orange ["#7FFF3DF323D6" "#000000"])
+      (bg-hl-yellow ["#6E1463582687" "#000000"])
+      (bg-hl-green  ["#32617AE03261" "#000000"])
+      (bg-hl-cyan   ["#147A66666666" "#000000"])
+      (bg-hl-blue   ["#272A4D2E7332" "#000000"])
+      (bg-hl-violet ["#503623D66666" "#000000"])
 
       ;; Dark backgrounds. For large areas. (10, -60)
-      (bg-d-red     ["#4CCC228F228F" "black" "black"])
-      (bg-d-orange  ["#666638E626E9" "black" "black"])
-      (bg-d-yellow  ["#547A4D822603" "black" "black"])
-      (bg-d-green   ["#319C6147319C" "black" "black"])
-      (bg-d-cyan    ["#170A4CCC4CCC" "black" "black"])
-      (bg-d-blue    ["#276C40825999" "black" "black"])
-      (bg-d-violet  ["#3EB8228F4CCC" "black" "black"])
+      (bg-d-red     ["#4CCC228F228F" "#000000"])
+      (bg-d-orange  ["#666638E626E9" "#000000"])
+      (bg-d-yellow  ["#547A4D822603" "#000000"])
+      (bg-d-green   ["#319C6147319C" "#000000"])
+      (bg-d-cyan    ["#170A4CCC4CCC" "#000000"])
+      (bg-d-blue    ["#276C40825999" "#000000"])
+      (bg-d-violet  ["#3EB8228F4CCC" "#000000"])
 
       ;; Final color lists. If at all possible, use these properties instead of
       ;; including raw colors per above.
